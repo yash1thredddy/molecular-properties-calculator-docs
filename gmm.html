@@ -106,27 +106,32 @@
         <h3>Single-property mode — one column, looking for humps</h3>
         <p><strong>What it is:</strong> you pick exactly <strong>one</strong> numeric column — say <em>molecular weight</em>. GMM then asks a simple question: does this single property split into more than one hump? It draws a <strong>density curve</strong> (a smoothed histogram — picture a histogram with the bars blurred into a flowing line) and reveals whether the curve has, for example, one bump of light compounds and a separate bump of heavy ones.</p>
         <p><strong>Why you'd use it:</strong> to understand how a <em>single trait</em> distributes across your library. Is your set really "one population of medium-weight molecules," or is it secretly "a fragment-sized cluster plus a lead-sized cluster glued together"? Single mode answers that at a glance.</p>
-        <p><strong>What you see:</strong> a density histogram in real units, with each discovered hump shaded a different color and a vertical marker at each hump's center (its average value).</p>
+        <p><strong>What you see:</strong> a faded histogram of your data in real units, with each discovered group drawn as a filled, colored curve and its average value shown in the legend — exactly the figure the app produces.</p>
 
         <figure style="margin:0">
-          <svg viewBox="0 0 640 240" width="100%" style="background:var(--surface);border:1px solid var(--border);border-radius:10px" role="img" aria-label="Density histogram of one property splitting into two colored humps">
-            <line x1="50" y1="200" x2="610" y2="200" stroke="var(--muted)" stroke-width="1.2"/>
-            <line x1="50" y1="25" x2="50" y2="200" stroke="var(--muted)" stroke-width="1.2"/>
-            <g fill="#0e9384" opacity=".55">
-              <rect x="70" y="150" width="22" height="50"/><rect x="94" y="120" width="22" height="80"/><rect x="118" y="95" width="22" height="105"/><rect x="142" y="110" width="22" height="90"/><rect x="166" y="140" width="22" height="60"/><rect x="190" y="170" width="22" height="30"/>
+          <svg viewBox="0 0 680 250" width="100%" style="background:var(--surface);border:1px solid var(--border);border-radius:10px" role="img" aria-label="Density plot: a faded grey histogram of all data overlaid with three filled, colored group curves and a legend giving each group's average">
+            <!-- faint gridlines -->
+            <g stroke="var(--border)" stroke-width="1" opacity=".6"><line x1="48" y1="170" x2="500" y2="170"/><line x1="48" y1="130" x2="500" y2="130"/><line x1="48" y1="90" x2="500" y2="90"/><line x1="48" y1="50" x2="500" y2="50"/></g>
+            <!-- axes -->
+            <line x1="48" y1="210" x2="500" y2="210" stroke="var(--muted)" stroke-width="1.2"/>
+            <line x1="48" y1="24" x2="48" y2="210" stroke="var(--muted)" stroke-width="1.2"/>
+            <text x="20" y="120" fill="var(--muted)" font-size="12" font-family="IBM Plex Sans" transform="rotate(-90 20 120)">Density</text>
+            <text x="274" y="240" text-anchor="middle" fill="var(--muted)" font-size="12" font-family="IBM Plex Sans">Molecular weight (g/mol) →</text>
+            <!-- 'Your data': one pooled grey histogram of every molecule -->
+            <g fill="#b9bec4" opacity=".55">
+              <rect x="54" y="114" width="28" height="96"/><rect x="86" y="102" width="28" height="108"/><rect x="118" y="110" width="28" height="100"/><rect x="150" y="128" width="28" height="82"/><rect x="182" y="138" width="28" height="72"/><rect x="214" y="124" width="28" height="86"/><rect x="246" y="134" width="28" height="76"/><rect x="278" y="148" width="28" height="62"/><rect x="310" y="140" width="28" height="70"/><rect x="342" y="154" width="28" height="56"/><rect x="374" y="164" width="28" height="46"/><rect x="406" y="156" width="28" height="54"/><rect x="438" y="170" width="28" height="40"/><rect x="470" y="180" width="28" height="30"/>
             </g>
-            <g fill="#3b6fb0" opacity=".55">
-              <rect x="330" y="165" width="22" height="35"/><rect x="354" y="130" width="22" height="70"/><rect x="378" y="100" width="22" height="100"/><rect x="402" y="90" width="22" height="110"/><rect x="426" y="120" width="22" height="80"/><rect x="450" y="155" width="22" height="45"/><rect x="474" y="178" width="22" height="22"/>
-            </g>
-            <path d="M60 200 Q130 30 200 200" fill="none" stroke="#0e9384" stroke-width="2.5"/>
-            <path d="M325 200 Q415 25 505 200" fill="none" stroke="#3b6fb0" stroke-width="2.5"/>
-            <line x1="130" y1="40" x2="130" y2="200" stroke="#0e9384" stroke-width="1.4" stroke-dasharray="4 4"/>
-            <line x1="415" y1="35" x2="415" y2="200" stroke="#3b6fb0" stroke-width="1.4" stroke-dasharray="4 4"/>
-            <text x="130" y="222" text-anchor="middle" fill="#0e9384" font-size="11" font-family="IBM Plex Sans">light cluster center</text>
-            <text x="415" y="222" text-anchor="middle" fill="#3b6fb0" font-size="11" font-family="IBM Plex Sans">heavy cluster center</text>
-            <text x="330" y="18" text-anchor="middle" fill="var(--muted)" font-size="12" font-family="IBM Plex Sans">Molecular weight (g/mol) →</text>
+            <!-- filled group densities (Set2 palette, exactly as the app draws them) -->
+            <path d="M58 210 C120 210 120 78 150 78 C180 78 188 210 250 210 Z" fill="#66C2A5" fill-opacity=".45" stroke="#66C2A5" stroke-width="2.5"/>
+            <path d="M200 210 C262 210 262 104 290 104 C318 104 326 210 400 210 Z" fill="#FC8D62" fill-opacity=".45" stroke="#FC8D62" stroke-width="2.5"/>
+            <path d="M330 210 C392 210 388 128 410 128 C432 128 440 210 498 210 Z" fill="#8DA0CB" fill-opacity=".45" stroke="#8DA0CB" stroke-width="2.5"/>
+            <!-- legend -->
+            <rect x="513" y="52" width="14" height="14" rx="2" fill="#b9bec4"/><text x="533" y="63" fill="var(--text)" font-size="12" font-family="IBM Plex Sans">Your data</text>
+            <rect x="513" y="80" width="14" height="14" rx="2" fill="#66C2A5"/><text x="533" y="91" fill="var(--text)" font-size="12" font-family="IBM Plex Sans">Group 1 (avg 232)</text>
+            <rect x="513" y="108" width="14" height="14" rx="2" fill="#FC8D62"/><text x="533" y="119" fill="var(--text)" font-size="12" font-family="IBM Plex Sans">Group 2 (avg 344)</text>
+            <rect x="513" y="136" width="14" height="14" rx="2" fill="#8DA0CB"/><text x="533" y="147" fill="var(--text)" font-size="12" font-family="IBM Plex Sans">Group 3 (avg 458)</text>
           </svg>
-          <figcaption class="caption" style="color:var(--muted);font-size:13px;margin-top:6px"><strong>Single-property output:</strong> the density curve for one column splits into two humps, revealing a light cluster and a heavy cluster hiding inside one library.</figcaption>
+          <figcaption class="caption" style="color:var(--muted);font-size:13px;margin-top:6px"><strong>Single-property output:</strong> the pooled grey histogram of one column resolves into three filled curves — a light, a medium and a heavy cluster hiding inside one library — each labelled with its average in the legend.</figcaption>
         </figure>
 
         <h3>Multiple-property mode — several columns at once</h3>
@@ -138,22 +143,29 @@
           <div><div class="at">More properties = richer grouping, with a catch</div><p>Adding properties lets GMM see more nuance — but it also needs <em>enough molecules</em> to support that nuance, and it strongly benefits from turning on <strong>Standardize</strong> (below) so a big-number property like MW doesn't drown out a small-number one like LogP.</p></div></div>
 
         <figure style="margin:0">
-          <svg viewBox="0 0 640 280" width="100%" style="background:var(--surface);border:1px solid var(--border);border-radius:10px" role="img" aria-label="2-D scatter with three colored clusters and marked center crosses">
-            <line x1="55" y1="240" x2="610" y2="240" stroke="var(--muted)" stroke-width="1.2"/>
-            <line x1="55" y1="25" x2="55" y2="240" stroke="var(--muted)" stroke-width="1.2"/>
-            <text x="335" y="266" text-anchor="middle" fill="var(--muted)" font-size="12" font-family="IBM Plex Sans">Molecular weight (X axis you chose) →</text>
-            <text x="28" y="135" fill="var(--muted)" font-size="12" font-family="IBM Plex Sans" transform="rotate(-90 28 135)">LogP (Y axis you chose)</text>
-            <g fill="#0e9384"><circle cx="120" cy="190" r="5"/><circle cx="140" cy="205" r="5"/><circle cx="105" cy="165" r="5"/><circle cx="150" cy="180" r="5"/><circle cx="125" cy="215" r="5"/><circle cx="160" cy="200" r="5"/><circle cx="110" cy="200" r="5"/></g>
-            <g fill="#3b6fb0"><circle cx="320" cy="110" r="5"/><circle cx="345" cy="95" r="5"/><circle cx="300" cy="125" r="5"/><circle cx="360" cy="120" r="5"/><circle cx="330" cy="80" r="5"/><circle cx="310" cy="90" r="5"/><circle cx="350" cy="135" r="5"/></g>
-            <g fill="#7c5cbf"><circle cx="490" cy="190" r="5"/><circle cx="515" cy="170" r="5"/><circle cx="475" cy="175" r="5"/><circle cx="525" cy="195" r="5"/><circle cx="500" cy="155" r="5"/><circle cx="540" cy="180" r="5"/></g>
-            <g stroke-width="2.4"><path d="M125 192h16M133 184v16" stroke="#0e9384"/></g>
-            <g stroke-width="2.4"><path d="M323 105h16M331 97v16" stroke="#234a7a"/></g>
-            <g stroke-width="2.4"><path d="M500 177h16M508 169v16" stroke="#4a3a7a"/></g>
-            <text x="133" y="150" text-anchor="middle" fill="#0e9384" font-size="11" font-family="IBM Plex Sans" font-weight="600">small &amp; polar</text>
-            <text x="331" y="60" text-anchor="middle" fill="#3b6fb0" font-size="11" font-family="IBM Plex Sans" font-weight="600">medium &amp; greasy</text>
-            <text x="508" y="140" text-anchor="middle" fill="#7c5cbf" font-size="11" font-family="IBM Plex Sans" font-weight="600">large series</text>
+          <svg viewBox="0 0 680 320" width="100%" style="background:var(--surface);border:1px solid var(--border);border-radius:10px" role="img" aria-label="Scatter of two chosen properties: points colored by group with black star markers at each group center and a legend">
+            <defs><polygon id="gmmStar" points="0,-11 2.6,-3.6 10.5,-3.4 4.3,1.4 6.5,8.9 0,4.5 -6.5,8.9 -4.3,1.4 -10.5,-3.4 -2.6,-3.6" fill="#111" stroke="#fff" stroke-width="1.2"/></defs>
+            <g stroke="var(--border)" stroke-width="1" opacity=".6"><line x1="58" y1="230" x2="500" y2="230"/><line x1="58" y1="180" x2="500" y2="180"/><line x1="58" y1="130" x2="500" y2="130"/><line x1="58" y1="80" x2="500" y2="80"/></g>
+            <line x1="58" y1="280" x2="500" y2="280" stroke="var(--muted)" stroke-width="1.2"/>
+            <line x1="58" y1="28" x2="58" y2="280" stroke="var(--muted)" stroke-width="1.2"/>
+            <text x="58" y="19" fill="var(--text)" font-size="12.5" font-family="IBM Plex Sans" font-weight="600">MW vs LogP, colored by group</text>
+            <text x="279" y="308" text-anchor="middle" fill="var(--muted)" font-size="12" font-family="IBM Plex Sans">Molecular weight (X axis you chose) →</text>
+            <text x="26" y="170" fill="var(--muted)" font-size="12" font-family="IBM Plex Sans" transform="rotate(-90 26 170)">LogP (Y axis you chose)</text>
+            <!-- Group 1 (teal) — small &amp; polar -->
+            <g fill="#66C2A5" opacity=".75"><circle cx="120" cy="245" r="5"/><circle cx="135" cy="228" r="5"/><circle cx="150" cy="240" r="5"/><circle cx="165" cy="232" r="5"/><circle cx="140" cy="250" r="5"/><circle cx="160" cy="222" r="5"/><circle cx="128" cy="238" r="5"/><circle cx="118" cy="225" r="5"/><circle cx="172" cy="245" r="5"/><circle cx="145" cy="218" r="5"/><circle cx="155" cy="250" r="5"/><circle cx="132" cy="255" r="5"/><circle cx="168" cy="230" r="5"/><circle cx="125" cy="250" r="5"/><circle cx="150" cy="225" r="5"/></g>
+            <!-- Group 2 (orange) — medium &amp; greasy -->
+            <g fill="#FC8D62" opacity=".75"><circle cx="270" cy="160" r="5"/><circle cx="285" cy="140" r="5"/><circle cx="300" cy="155" r="5"/><circle cx="315" cy="138" r="5"/><circle cx="295" cy="168" r="5"/><circle cx="275" cy="128" r="5"/><circle cx="308" cy="165" r="5"/><circle cx="262" cy="150" r="5"/><circle cx="322" cy="148" r="5"/><circle cx="290" cy="125" r="5"/><circle cx="280" cy="172" r="5"/><circle cx="305" cy="130" r="5"/><circle cx="268" cy="138" r="5"/><circle cx="312" cy="158" r="5"/><circle cx="298" cy="145" r="5"/></g>
+            <!-- Group 3 (blue-purple) — large series -->
+            <g fill="#8DA0CB" opacity=".75"><circle cx="400" cy="215" r="5"/><circle cx="415" cy="198" r="5"/><circle cx="430" cy="208" r="5"/><circle cx="445" cy="195" r="5"/><circle cx="410" cy="225" r="5"/><circle cx="390" cy="205" r="5"/><circle cx="438" cy="220" r="5"/><circle cx="425" cy="185" r="5"/><circle cx="452" cy="200" r="5"/><circle cx="405" cy="190" r="5"/><circle cx="420" cy="230" r="5"/><circle cx="440" cy="188" r="5"/><circle cx="398" cy="228" r="5"/><circle cx="448" cy="212" r="5"/><circle cx="432" cy="200" r="5"/></g>
+            <!-- group centers: black stars with a white outline, exactly as the app marks them -->
+            <use href="#gmmStar" x="148" y="236"/><use href="#gmmStar" x="292" y="148"/><use href="#gmmStar" x="424" y="206"/>
+            <!-- legend -->
+            <circle cx="520" cy="70" r="6" fill="#66C2A5"/><text x="534" y="74" fill="var(--text)" font-size="12" font-family="IBM Plex Sans">Group 1</text>
+            <circle cx="520" cy="98" r="6" fill="#FC8D62"/><text x="534" y="102" fill="var(--text)" font-size="12" font-family="IBM Plex Sans">Group 2</text>
+            <circle cx="520" cy="126" r="6" fill="#8DA0CB"/><text x="534" y="130" fill="var(--text)" font-size="12" font-family="IBM Plex Sans">Group 3</text>
+            <use href="#gmmStar" x="520" y="156"/><text x="534" y="160" fill="var(--text)" font-size="12" font-family="IBM Plex Sans">Group centers</text>
           </svg>
-          <figcaption class="caption" style="color:var(--muted);font-size:13px;margin-top:6px"><strong>Multiple-property output:</strong> each molecule is colored by its group, and a cross (+) marks every group's center. The axes are the two properties you chose for viewing; the grouping used all selected properties.</figcaption>
+          <figcaption class="caption" style="color:var(--muted);font-size:13px;margin-top:6px"><strong>Multiple-property output:</strong> each molecule is colored by its group, and a black star marks every group's center — exactly as the app draws it. The axes are the two properties you chose for viewing; the grouping used all selected properties.</figcaption>
         </figure>
       </section>
 
@@ -244,18 +256,17 @@
             <text x="335" y="250" text-anchor="middle" fill="var(--muted)" font-size="12" font-family="IBM Plex Sans">Number of groups tried →</text>
             <text x="30" y="125" fill="var(--muted)" font-size="12" font-family="IBM Plex Sans" transform="rotate(-90 30 125)">Score (lower = better)</text>
             <g fill="var(--muted)" font-size="11" font-family="IBM Plex Mono" text-anchor="middle"><text x="120" y="238">2</text><text x="220" y="238">3</text><text x="320" y="238">4</text><text x="420" y="238">5</text><text x="520" y="238">6</text></g>
-            <!-- BIC solid -->
-            <polyline points="120,90 220,135 320,170 420,150 520,120" fill="none" stroke="#e0564a" stroke-width="2.6"/>
-            <g fill="#e0564a"><circle cx="120" cy="90" r="4"/><circle cx="220" cy="135" r="4"/><circle cx="320" cy="170" r="4"/><circle cx="420" cy="150" r="4"/><circle cx="520" cy="120" r="4"/></g>
-            <!-- AIC dashed -->
-            <polyline points="120,110 220,150 320,150 420,120 520,100" fill="none" stroke="#3b6fb0" stroke-width="2.4" stroke-dasharray="7 5"/>
-            <g fill="#3b6fb0"><circle cx="120" cy="110" r="4"/><circle cx="220" cy="150" r="4"/><circle cx="320" cy="150" r="4"/><circle cx="420" cy="120" r="4"/><circle cx="520" cy="100" r="4"/></g>
-            <!-- minimum marker for BIC -->
-            <circle cx="320" cy="170" r="9" fill="none" stroke="#e0564a" stroke-width="2"/>
-            <line x1="320" y1="170" x2="380" y2="200" stroke="var(--muted)" stroke-width="1"/>
-            <text x="384" y="204" fill="#e0564a" font-size="11" font-family="IBM Plex Sans" font-weight="600">best choice (lowest BIC)</text>
-            <text x="135" y="80" fill="#e0564a" font-size="11" font-family="IBM Plex Sans" font-weight="600">BIC (solid)</text>
-            <text x="135" y="100" fill="#3b6fb0" font-size="11" font-family="IBM Plex Sans" font-weight="600">AIC (dashed)</text>
+            <!-- BIC solid: steep drop to a single minimum at 4 groups, then a gentle rise -->
+            <path d="M120 70 C175 135 255 184 320 186 C385 188 440 160 520 118" fill="none" stroke="#e0564a" stroke-width="3" stroke-linecap="round"/>
+            <!-- AIC dashed: gentler penalty — shallower, later valley that stays low on the right -->
+            <path d="M120 95 C185 150 255 192 320 193 C400 194 470 176 520 152" fill="none" stroke="#3b6fb0" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round" opacity=".85"/>
+            <!-- best-choice marker on the BIC minimum (4 groups) -->
+            <line x1="320" y1="186" x2="320" y2="220" stroke="#e0564a" stroke-width="1.5" stroke-dasharray="4 4"/>
+            <circle cx="320" cy="186" r="6.5" fill="#e0564a"/>
+            <text x="320" y="172" text-anchor="middle" fill="var(--text)" font-size="12" font-family="IBM Plex Sans" font-weight="600">best choice</text>
+            <!-- legend (top-right) -->
+            <line x1="398" y1="52" x2="428" y2="52" stroke="#e0564a" stroke-width="3"/><text x="434" y="56" fill="var(--muted)" font-size="12.5" font-family="IBM Plex Sans">BIC</text>
+            <line x1="478" y1="52" x2="508" y2="52" stroke="#3b6fb0" stroke-width="2.5" stroke-dasharray="6 5"/><text x="514" y="56" fill="var(--muted)" font-size="12.5" font-family="IBM Plex Sans">AIC</text>
           </svg>
           <figcaption class="caption" style="color:var(--muted);font-size:13px;margin-top:6px">Each curve dips to a minimum then climbs. The lowest point of the <strong>solid BIC</strong> line (here, 4 groups) is the recommended number. The <strong>dashed AIC</strong> line is shown alongside so you can see whether it agrees.</figcaption>
         </figure>
