@@ -146,7 +146,7 @@
             <g fill="#0e9384"><circle cx="120" cy="190" r="5"/><circle cx="140" cy="205" r="5"/><circle cx="105" cy="165" r="5"/><circle cx="150" cy="180" r="5"/><circle cx="125" cy="215" r="5"/><circle cx="160" cy="200" r="5"/><circle cx="110" cy="200" r="5"/></g>
             <g fill="#3b6fb0"><circle cx="320" cy="110" r="5"/><circle cx="345" cy="95" r="5"/><circle cx="300" cy="125" r="5"/><circle cx="360" cy="120" r="5"/><circle cx="330" cy="80" r="5"/><circle cx="310" cy="90" r="5"/><circle cx="350" cy="135" r="5"/></g>
             <g fill="#7c5cbf"><circle cx="490" cy="190" r="5"/><circle cx="515" cy="170" r="5"/><circle cx="475" cy="175" r="5"/><circle cx="525" cy="195" r="5"/><circle cx="500" cy="155" r="5"/><circle cx="540" cy="180" r="5"/></g>
-            <g stroke-width="2.4"><path d="M125 192h16M133 184v16" stroke="#0e564a"/></g>
+            <g stroke-width="2.4"><path d="M125 192h16M133 184v16" stroke="#0e9384"/></g>
             <g stroke-width="2.4"><path d="M323 105h16M331 97v16" stroke="#234a7a"/></g>
             <g stroke-width="2.4"><path d="M500 177h16M508 169v16" stroke="#4a3a7a"/></g>
             <text x="133" y="150" text-anchor="middle" fill="#0e9384" font-size="11" font-family="IBM Plex Sans" font-weight="600">small &amp; polar</text>
@@ -228,7 +228,7 @@
         <p>To escape the trap, we use a <strong>scorecard</strong> that rewards good fit but <strong>subtracts a penalty for every extra group</strong>. Now there's a tug-of-war: more groups improve the fit (score wants to drop) but each one costs a penalty (score wants to rise). The sweet spot is where the two balance. <strong>Lower score = better.</strong> So you compute the scorecard for 2, 3, 4, 5, 6 groups and pick the number with the <strong>lowest</strong> score.</p>
         <p><strong>BIC</strong> (Bayesian Information Criterion) and <strong>AIC</strong> (Akaike Information Criterion) are two such scorecards. They follow the same recipe — fit minus a penalty — but penalize differently.</p>
 
-        <div class="formula">BIC <span class="op">=</span> (how badly it fits) <span class="op">+</span> (penalty per group) <span class="op">×</span> log(number of molecules)</div>
+        <div class="formula">BIC <span class="op">=</span> (how badly it fits) <span class="op">+</span> (penalty per setting the model learned) <span class="op">×</span> log(number of molecules)</div>
         <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> BIC starts with "how poorly the model explains the data," then adds a fine for complexity. Crucially, that fine grows with how much data you have (the <em>log of the number of molecules</em>) — so on a big library, BIC charges a steep price for each extra group and leans toward <strong>fewer, well-supported</strong> groups.</div></div>
 
         <div class="formula">AIC <span class="op">=</span> (how badly it fits) <span class="op">+</span> 2 <span class="op">×</span> (number of settings the model had to learn)</div>
