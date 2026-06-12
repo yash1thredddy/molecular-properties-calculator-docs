@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reference · Molecular Properties Calculator Docs</title>
+<meta name="description" content="Frequently asked questions and a plain-language glossary of every term in this guide." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="reference">
+<div class="progress" id="progress"></div>
+
+<nav class="navbar">
+  <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a href="index.html" class="brand">
+    <svg class="logo" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="11" r="5" fill="#e0564a"/><circle cx="10" cy="28" r="5" fill="#0e9384"/><circle cx="30" cy="28" r="5" fill="#3b6fb0"/><line x1="20" y1="11" x2="10" y2="28" stroke="#9aa3ad" stroke-width="2.2"/><line x1="20" y1="11" x2="30" y2="28" stroke="#9aa3ad" stroke-width="2.2"/><line x1="10" y1="28" x2="30" y2="28" stroke="#9aa3ad" stroke-width="2.2"/></svg>
+    <span class="full">Molecular Properties Calculator</span><span class="tag">Docs</span>
+  </a>
+  <div class="nav-spacer"></div>
+  <a href="reference.html" class="nav-link hide-sm">Reference</a>
+  <a href="https://molecular-properties-calculator-2.streamlit.app/" target="_blank" rel="noopener" class="nav-cta">Open the App ↗</a>
+  <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">
+    <svg id="sunIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <svg id="moonIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+  <div class="side-group"><h4>Start Here</h4>
+    <a class="side-link" data-page="home" href="index.html">Introduction</a>
+    <a class="side-link" data-page="getting-started" href="getting-started.html">Getting started</a>
+  </div>
+  <div class="side-group"><h4>Working with your data</h4>
+    <a class="side-link" data-page="batch" href="batch.html">Batch processing</a>
+    <a class="side-link" data-page="visualization" href="visualization.html">Visualization &amp; charts</a>
+  </div>
+  <div class="side-group"><h4>Understanding the results</h4>
+    <a class="side-link" data-page="properties" href="properties.html">Properties &amp; drug-likeness</a>
+    <a class="side-link" data-page="ligand-efficiency" href="ligand-efficiency.html">Ligand efficiency</a>
+    <a class="side-link" data-page="interference" href="interference.html">Interference flags</a>
+  </div>
+  <div class="side-group"><h4>Deeper analysis</h4>
+    <a class="side-link" data-page="regression" href="regression.html">3D regression</a>
+    <a class="side-link" data-page="gmm" href="gmm.html">Grouping (GMM)</a>
+  </div>
+  <div class="side-group"><h4>Reference</h4>
+    <a class="side-link" data-page="reference" href="reference.html">FAQ &amp; glossary</a>
+  </div>
+</aside>
+
+  <div class="main-wrap">
+    <main class="content">
+
+      <div class="page-head">
+        <div class="breadcrumb"><a href="index.html">Docs</a><span class="sep">/</span><span>Reference</span><span class="sep">/</span><span>FAQ &amp; glossary</span></div>
+        <div class="eyebrow">REFERENCE</div>
+        <h1>Reference</h1>
+        <p class="lead">Frequently asked questions and a plain-language glossary of every term in this guide.</p>
+      </div>
+
+      <section>
+        <h2 id="faq">Frequently asked questions</h2>
+        <p>The questions in this section come up on day one — whether you need any technical background, and what to do when a familiar rule fires for one of your compounds.</p>
+
+        <div class="faq">
+          <details>
+            <summary>Do I need to know how to code?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p><b>No.</b> The calculator is a point-and-click web app. You type or paste a structure, or drag in a spreadsheet, and read the results on screen. There is no command line, no script to write, and nothing to install — it runs in your browser.</p>
+              <p>The only "language" you ever touch is the way you describe a molecule: a <b>SMILES</b> string (a short text recipe for a structure, like <span class="smiles">CC(=O)OC1=CC=CC=C1C(=O)O</span> for aspirin), an <b>InChI</b>, or an <b>InChI Key</b>. Your drawing software or database almost always exports these for you. See <a href="getting-started.html">Input formats</a> for a gentle walk-through.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>My compound breaks the Rule of Five — is it useless?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p><b>No.</b> The Rule of Five (Lipinski) is a <em>guide, not a gate</em>. It flags compounds that may be harder to develop as <b>orally absorbed</b> drugs — molecular weight ≤ 500, LogP ≤ 5 (greasiness), hydrogen-bond donors ≤ 5, acceptors ≤ 10. Each limit you cross counts as one "violation." Zero or one violation is normal; two or more is a heads-up to look closer.</p>
+              <p>Plenty of real, approved drugs break it on purpose — many antibiotics, peptides, and anything given by injection rather than swallowed. The rule was built for one delivery route (oral) and one class of small molecules. Treat a violation as "ask why," not "discard." Full context on <a href="properties.html">Drug-likeness rules</a>.</p>
+              <div class="adm adm-tip"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg><div><div class="at">Rule of thumb</div><p>If your project is an oral drug, watch violations closely. If it is an injectable, topical, or beyond-Rule-of-Five modality, the rule simply does not apply the way it does to classic small molecules.</p></div></div>
+            </div>
+          </details>
+
+          <details>
+            <summary>A compound got a PAINS / interference flag — should I drop it?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p><b>Not automatically.</b> An interference flag is a <em>heads-up for human review, not a verdict.</em> It means your molecule contains a substructure that has a history of misbehaving in assays — for example a <b>PAINS</b> shape (a "frequent hitter" that scores as active across many unrelated targets), a likely <b>aggregator</b> (a greasy compound that clumps and sequesters protein), or a reactive/redox/fluorescent group that can fool the readout.</p>
+              <p>The flag tells you <em>which pattern matched and how severe it is</em>, so you can decide. Good follow-ups: run an <b>orthogonal assay</b> (a second test with different chemistry), check a proper <b>dose–response</b> curve, and add a <b>detergent control</b> for suspected aggregators. A genuine hit will survive these checks; a false alarm usually will not. See <a href="interference.html">Interference flags</a> for each category and its recommended control.</p>
+              <div class="adm adm-warn"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><div><div class="at">Don't over-trust the flag either</div><p>The patterns are imperfect. A clean compound can match a PAINS shape harmlessly, and a true troublemaker can slip past. Use the flag to <em>prioritize scrutiny</em>, not to make the decision for you.</p></div></div>
+            </div>
+          </details>
+        </div>
+
+        <h3>Grouping &amp; GMM</h3>
+        <p>These cover the <a href="gmm.html">GMM Analysis</a> workspace, which discovers the natural groups (sub-populations of similar molecules) hiding in your data. The terms here — clusters, seeds, BIC, confidence — are defined in plain words as they come up.</p>
+
+        <div class="faq">
+          <details>
+            <summary>How does the tool decide how many groups (clusters) to make?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p>A <b>group</b> (or <b>cluster</b>) is just a sub-population of molecules that resemble each other on the properties you chose — say "small &amp; polar" versus "large &amp; greasy." You have two ways to set the number of groups:</p>
+              <ul>
+                <li><b>The slider (2–6)</b> lets you <em>force</em> a specific number. Fewer groups = broad, coarse buckets; more groups = finer splits (but with a risk of inventing groups that aren't really there).</li>
+                <li><b>The "Auto (BIC)" button</b> picks the number <em>for you</em>. It tries each candidate count and uses a scorecard called <b>BIC</b> (explained below) to choose the best-supported one.</li>
+              </ul>
+              <p>You can't just pick "whatever fits best," because adding more groups <em>always</em> fits the data better — give it enough and every molecule becomes its own group, which is overfitting, not insight. So BIC rewards good fit but subtracts a penalty for every extra group. On the BIC curve, the score dips to a low point and then rises again; the bottom of the dip is the chosen number.</p>
+              <svg viewBox="0 0 360 170" width="100%" style="max-width:420px;background:var(--surface);border:1px solid var(--border);border-radius:8px" role="img" aria-label="BIC dip curve">
+                <line x1="40" y1="20" x2="40" y2="135" stroke="#9aa3ad" stroke-width="1.5"/>
+                <line x1="40" y1="135" x2="335" y2="135" stroke="#9aa3ad" stroke-width="1.5"/>
+                <polyline points="65,55 110,90 160,120 210,118 260,108 310,95" fill="none" stroke="#3b6fb0" stroke-width="2.5"/>
+                <circle cx="160" cy="120" r="5" fill="#e0564a"/>
+                <line x1="160" y1="120" x2="160" y2="135" stroke="#e0564a" stroke-width="1" stroke-dasharray="3 3"/>
+                <text x="150" y="150" fill="#e0564a" font-size="11" font-family="IBM Plex Sans">3 groups</text>
+                <text x="185" y="40" fill="#9aa3ad" font-size="10" font-family="IBM Plex Sans">lowest BIC = best</text>
+                <text x="120" y="14" fill="var(--muted)" font-size="10" font-family="IBM Plex Sans">BIC score (lower is better)</text>
+                <text x="200" y="167" fill="var(--muted)" font-size="10" font-family="IBM Plex Sans">number of groups →</text>
+              </svg>
+              <p style="color:var(--muted);font-size:.85rem;margin-top:4px">Sample plot: BIC drops as groups are added, bottoms out at the right number, then rises — the marked dip is the tool's pick.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What is the difference between BIC and AIC?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p>Both are <b>scorecards</b> for choosing how many groups to use. Each balances two things: how well the model fits the data, and a <b>penalty</b> for complexity (more groups). For both, <b>lower is better</b>, and you pick the number of groups with the lowest score.</p>
+              <div class="formula">BIC <span class="op">=</span> (how badly it fits) <span class="op">+</span> (penalty per group) <span class="op">×</span> log(number of molecules)</div>
+              <div class="formula">AIC <span class="op">=</span> (how badly it fits) <span class="op">+</span> 2 <span class="op">×</span> (number of settings the model had to learn)</div>
+              <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> both start with "how wrong is the model" and add a fine for being complicated. <b>BIC</b> charges a bigger fine the more data you have, so it prefers <em>fewer, well-supported</em> groups. <b>AIC</b> charges a gentler, fixed fine, so it tends to suggest <em>more</em> groups. They are two opinions, not a ratio you divide.</div></div>
+              <p>This app <b>chooses using BIC</b> — in drug discovery you'd rather not invent groups out of random noise — and shows AIC alongside so you can see when they disagree. A big gap between the two means the extra structure is weak or uncertain, so treat finer groupings cautiously. More on <a href="gmm.html">the GMM page</a>.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What does a "confidence" of 60% mean for a molecule?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p>GMM doesn't just shove each molecule into a box — it estimates <em>how sure</em> it is. The <b>confidence score</b> (reported as <span class="smiles">GMM_Confidence_%</span>) is the probability that a molecule belongs to its assigned group rather than another one.</p>
+              <ul>
+                <li><b>High confidence (≈90–100%)</b> — the molecule sits squarely inside one group. Clear membership.</li>
+                <li><b>Middling confidence (≈60%)</b> — the molecule sits <em>near a border</em> between two groups. It was assigned to the most likely one, but it's genuinely ambiguous; a small change could flip it.</li>
+                <li><b>Low confidence</b> — it fits no group well. These often get an <b>outlier</b> flag and are frequently the most interesting (a novel chemotype) or most suspect (a data error) molecules in the set.</li>
+              </ul>
+              <svg viewBox="0 0 360 130" width="100%" style="max-width:420px;background:var(--surface);border:1px solid var(--border);border-radius:8px" role="img" aria-label="Two overlapping bell curves with a borderline point">
+                <line x1="20" y1="105" x2="345" y2="105" stroke="#9aa3ad" stroke-width="1.5"/>
+                <path d="M30 105 Q110 15 190 105" fill="none" stroke="#3b6fb0" stroke-width="2.5"/>
+                <path d="M170 105 Q250 15 330 105" fill="none" stroke="#0e9384" stroke-width="2.5"/>
+                <circle cx="180" cy="92" r="5" fill="#e0564a"/>
+                <line x1="180" y1="92" x2="180" y2="105" stroke="#e0564a" stroke-width="1" stroke-dasharray="3 3"/>
+                <text x="95" y="40" fill="#3b6fb0" font-size="11" font-family="IBM Plex Sans">Group A</text>
+                <text x="255" y="40" fill="#0e9384" font-size="11" font-family="IBM Plex Sans">Group B</text>
+                <text x="150" y="125" fill="#e0564a" font-size="10" font-family="IBM Plex Sans">~60% confident</text>
+              </svg>
+              <p style="color:var(--muted);font-size:.85rem;margin-top:4px">Sample plot: a molecule landing in the overlap of two groups gets a middling confidence — it's a borderline case.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What is the random seed and why would I change it?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p>GMM fits its bell-curves with a search that <b>starts from a random guess</b> and then refines it. The <b>seed</b> is simply a number that fixes that starting guess.</p>
+              <p><b>Why it exists:</b> because of the randomness, two runs could land on slightly different groupings. Fixing the seed makes results <b>reproducible</b> — you and a colleague get the exact same answer every time, which matters when you report findings.</p>
+              <p><b>What changes if you change it</b> (the "Refit / new seed" button): a different starting guess. <em>Usually</em> you get the same groups, but borderline molecules near a boundary can shift. <b>"Reset seed"</b> returns to the default reproducible value.</p>
+              <div class="adm adm-tip"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg><div><div class="at">Practical use</div><p>Click "Refit" a few times. If the groups barely move, your grouping is <b>robust</b> and trustworthy. If they jump around, the structure is weak — be cautious about reading too much into the groups.</p></div></div>
+            </div>
+          </details>
+
+          <details>
+            <summary>My GMM groups changed slightly between runs — is that a problem?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p>Small shifts are normal and tell you something useful. Because the fit starts from a random guess (see the seed question above), a different starting point can move a few <em>borderline</em> molecules across a group boundary. This is exactly the <b>robustness check</b> we recommend.</p>
+              <ul>
+                <li><b>Only borderline (low-confidence) molecules move</b> → your grouping is solid. The core of each group is stable; only the genuinely ambiguous cases waver.</li>
+                <li><b>Groups reshuffle wholesale, or the number of groups changes run to run</b> → the data doesn't have strong natural structure on those properties. Don't over-interpret the groups; consider different properties, turning on <b>Standardize</b>, or collecting more data.</li>
+              </ul>
+              <p>Fix the <b>seed</b> when you want one stable, reportable answer; vary it deliberately when you want to test how trustworthy the grouping is.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What is the difference between single-property and multiple-property grouping?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p>It's a choice of <em>how many traits</em> the grouping looks at.</p>
+              <ul>
+                <li><b>Single-property mode</b> — you pick <em>one</em> column, say molecular weight. The tool draws a density curve and reveals whether that single trait splits into humps (e.g. a cluster of light compounds and a cluster of heavy ones). Use it to understand how <em>one</em> property distributes.</li>
+                <li><b>Multiple-property mode</b> — you pick <em>two or more</em> columns (say weight <em>and</em> greasiness <em>and</em> polar surface) and the tool groups molecules using <b>all of them at once</b>. Real chemical series differ along several axes simultaneously: a compound isn't just "heavy," it's "heavy, greasy, and low-polarity." Multi-property grouping captures those combined patterns that one property can't see. The scatter output lets you choose which two properties form the X/Y axes <em>just for viewing</em>, colored by group.</li>
+              </ul>
+              <div class="adm adm-info"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><div><div class="at">More properties, richer picture</div><p>Multi-property grouping is more powerful but needs enough data and benefits a lot from turning on <b>Standardize</b> so no single big-number property dominates. See the next question.</p></div></div>
+            </div>
+          </details>
+
+          <details>
+            <summary>What does "standardize columns" do?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p><b>Standardize</b> rescales every property to a common scale before grouping. It exists to solve a fairness problem: properties have wildly different ranges. Molecular weight is in the hundreds; LogP is around 0–5. Without rescaling, the big-number property completely dominates the grouping and the others are basically ignored.</p>
+              <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> it converts each value into "how many steps above or below average" (a <b>z-score</b>) so a 200-unit difference in weight and a 2-unit difference in LogP count comparably. Every property gets a fair say.</div></div>
+              <ul>
+                <li><b>ON</b> — recommended for <em>multiple-property</em> grouping, where you want each property to matter equally.</li>
+                <li><b>OFF</b> — fine for <em>single-property</em> work, where you want the chart in real units (real molecular weights, not rescaled numbers).</li>
+              </ul>
+            </div>
+          </details>
+
+          <details>
+            <summary>When should I log-transform?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p>A <b>log-transform</b> compresses a <em>skewed</em> column — one where a handful of very large values are stretched far away from the rest. Squashing that long tail closer to the pack helps the bell-curve fit behave and produces more balanced, sensible groups.</p>
+              <svg viewBox="0 0 360 120" width="100%" style="max-width:440px;background:var(--surface);border:1px solid var(--border);border-radius:8px" role="img" aria-label="Skewed distribution before and after log-transform">
+                <line x1="20" y1="95" x2="175" y2="95" stroke="#9aa3ad" stroke-width="1.2"/>
+                <path d="M25 95 Q45 20 60 95 Q90 60 175 92" fill="none" stroke="#e0564a" stroke-width="2"/>
+                <text x="50" y="112" fill="var(--muted)" font-size="9" font-family="IBM Plex Sans">skewed (long tail)</text>
+                <line x1="195" y1="95" x2="345" y2="95" stroke="#9aa3ad" stroke-width="1.2"/>
+                <path d="M205 95 Q270 25 335 95" fill="none" stroke="#0e9384" stroke-width="2"/>
+                <text x="225" y="112" fill="var(--muted)" font-size="9" font-family="IBM Plex Sans">after log: balanced</text>
+              </svg>
+              <p style="color:var(--muted);font-size:.85rem;margin-top:4px">Sample plot: a lopsided distribution (left) becomes more even after a log-transform (right).</p>
+              <ul>
+                <li><b>Turn it ON</b> for a column with a long right tail (a few enormous values dwarfing the rest).</li>
+                <li><b>Leave it OFF</b> for properties that are already fairly even.</li>
+              </ul>
+              <p>Columns with negative values are skipped automatically, since you can't take the log of a negative number.</p>
+            </div>
+          </details>
+        </div>
+
+        <h3>Inputs, files &amp; compatibility</h3>
+        <p>What you can feed in, what comes back out, and whether it all plays nicely with the rest of your toolkit.</p>
+
+        <div class="faq">
+          <details>
+            <summary>Can I trust the InChI Key lookup if I'm offline?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p>An <b>InChI Key</b> is a short, fixed-length fingerprint of a structure (for example <span class="smiles">BSYNRYMUTXBXSQ-UHHWGUDFSA-N</span> for aspirin). Unlike SMILES or InChI, the key <em>cannot be expanded back into a structure by itself</em> — it's a one-way hash. To turn a key into a usable molecule, the tool must look it up in an online database: it queries the <b>NIH CIR resolver</b> first, then falls back to <b>PubChem</b>.</p>
+              <p><b>So no — if you're offline, InChI Key input won't work,</b> because there's nothing local to expand it against. SMILES and InChI, by contrast, are self-contained and work without any internet connection.</p>
+              <div class="adm adm-tip"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg><div><div class="at">Working offline?</div><p>Convert your keys to SMILES or InChI while you have a connection, then work from those. Online lookups are also rate-limited and cached, so repeated keys resolve quickly without hammering the services. See <a href="getting-started.html">Input formats</a>.</p></div></div>
+            </div>
+          </details>
+
+          <details>
+            <summary>What file types can I upload and how big?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p>The app accepts <b>CSV</b> and <b>XLSX</b> (Excel) spreadsheets. It automatically detects the column holding your structures by looking for common names — <span class="smiles">SMILES</span>, <span class="smiles">smiles</span>, <span class="smiles">SMI</span>, <span class="smiles">canonical_smiles</span>, and similar.</p>
+              <ul>
+                <li>One file at a time per workspace — uploading a new file <b>replaces</b> the previous one in that mode.</li>
+                <li><a href="batch.html">Batch processing</a> is built for large sets — thousands of molecules — using parallel processing and a progress bar.</li>
+                <li>If a row has a bad structure, it's reported individually and <b>doesn't crash the whole batch</b>; the good rows still process.</li>
+              </ul>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Format</th><th>Extension</th><th>Best for</th></tr></thead>
+                  <tbody>
+                    <tr><td>Comma-separated values</td><td><span class="smiles">.csv</span></td><td><span class="pill pill-teal">Universal</span> exports from any tool</td></tr>
+                    <tr><td>Excel workbook</td><td><span class="smiles">.xlsx</span></td><td><span class="pill pill-blue">Native</span> spreadsheets with formatting</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary>Will my results work in Excel / KNIME / StarDrop?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p><b>Yes.</b> Downloads are plain, clean spreadsheets — your original columns plus new ones with the calculated values. The output is ordinary numeric columns, not a special file format, so it opens and behaves correctly in <b>Excel, KNIME, Pipeline Pilot, and StarDrop</b>, as well as Python/pandas, R, or anything else that reads CSV/XLSX.</p>
+              <p>The GMM workspace, for example, adds tidy columns like <span class="smiles">GMM_Group</span> and <span class="smiles">GMM_Confidence_%</span> that you can sort, filter, and pivot like any other field. Nothing is locked into the app.</p>
+            </div>
+          </details>
+        </div>
+
+        <h3>Regression &amp; the scores</h3>
+        <p>Reading the statistics from <a href="regression.html">3D regression</a> and understanding the single drug-likeness number, QED.</p>
+
+        <div class="faq">
+          <details>
+            <summary>What does a low R² in the regression mean?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p><b>R²</b> (R-squared) measures how much of the up-and-down variation in your target property the fitted plane actually explains. It runs from 0% to 100%.</p>
+              <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> if R² = 80%, the two properties you chose explain 80% of why the target moves, and 20% is left to other factors or noise. A <b>low R²</b> (say 10–20%) means your chosen properties barely explain the target — the cloud of points doesn't lie near the plane.</div></div>
+              <svg viewBox="0 0 360 130" width="100%" style="max-width:440px;background:var(--surface);border:1px solid var(--border);border-radius:8px" role="img" aria-label="High versus low R-squared scatter">
+                <line x1="20" y1="20" x2="20" y2="110" stroke="#9aa3ad" stroke-width="1.2"/><line x1="20" y1="110" x2="165" y2="110" stroke="#9aa3ad" stroke-width="1.2"/>
+                <line x1="28" y1="105" x2="158" y2="30" stroke="#3b6fb0" stroke-width="2"/>
+                <circle cx="45" cy="98" r="2.5" fill="#0e9384"/><circle cx="70" cy="84" r="2.5" fill="#0e9384"/><circle cx="95" cy="70" r="2.5" fill="#0e9384"/><circle cx="120" cy="54" r="2.5" fill="#0e9384"/><circle cx="145" cy="40" r="2.5" fill="#0e9384"/>
+                <text x="40" y="126" fill="#0e9384" font-size="10" font-family="IBM Plex Sans">high R² (tight)</text>
+                <line x1="200" y1="20" x2="200" y2="110" stroke="#9aa3ad" stroke-width="1.2"/><line x1="200" y1="110" x2="345" y2="110" stroke="#9aa3ad" stroke-width="1.2"/>
+                <line x1="208" y1="80" x2="338" y2="62" stroke="#3b6fb0" stroke-width="2"/>
+                <circle cx="225" cy="40" r="2.5" fill="#e0564a"/><circle cx="250" cy="95" r="2.5" fill="#e0564a"/><circle cx="275" cy="55" r="2.5" fill="#e0564a"/><circle cx="300" cy="100" r="2.5" fill="#e0564a"/><circle cx="325" cy="50" r="2.5" fill="#e0564a"/>
+                <text x="222" y="126" fill="#e0564a" font-size="10" font-family="IBM Plex Sans">low R² (scattered)</text>
+              </svg>
+              <p style="color:var(--muted);font-size:.85rem;margin-top:4px">Sample plot: tight points hug the line (high R²); a loose cloud sits far from it (low R²).</p>
+              <p>A low R² isn't a bug — it's an honest message that those properties don't drive the outcome much. Try different inputs, and check the <b>p-values</b> too: a p-value below 0.05 means the pattern is probably real (not luck), even if the overall fit is modest.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>What is QED?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p><b>QED</b> stands for <em>Quantitative Estimate of Drug-likeness</em>. It rolls several physical traits — weight, greasiness, polar surface, hydrogen-bond counts, rotatable bonds, aromatic rings, and interference alerts — into a <b>single score between 0 and 1</b>. Closer to <b>1</b> = more drug-like (in line with marketed oral drugs); closer to <b>0</b> = less so.</p>
+              <p>It's handy as a quick, one-number summary to rank or filter a list when you don't want to juggle eight separate properties. But like every other score here it's a <em>guide</em>: a low QED doesn't doom a compound, and a high QED doesn't guarantee success. See <a href="properties.html">Molecular properties</a> for the full breakdown.</p>
+              <div class="badge-row">
+                <span class="chip"><span class="dot" style="background:var(--brand)"></span>~0.0–0.3 less drug-like</span>
+                <span class="chip"><span class="dot" style="background:#b87514"></span>~0.3–0.6 borderline</span>
+                <span class="chip"><span class="dot" style="background:var(--teal)"></span>~0.6–1.0 drug-like</span>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary>What does a p-value below 0.05 actually mean?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+            <div class="faq-body">
+              <p>A <b>p-value</b> answers one question: "if there were really <em>no</em> relationship, how likely is it I'd see a pattern this strong just by chance?" A small p-value means "very unlikely to be luck — probably a real effect."</p>
+              <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> p &lt; 0.05 is the common cutoff for "probably real." It means there's less than a 5% chance the pattern is a fluke. A large p-value (say 0.4) means the apparent relationship could easily be random — don't lean on it.</div></div>
+              <p>In the regression output, each slope (coefficient) gets its own p-value, so you can see which property is pulling its weight and which is just along for the ride. Pair it with R² (overall fit) and the confidence intervals (the plausible range for each slope) for the full picture on <a href="regression.html">the regression page</a>.</p>
+            </div>
+          </details>
+        </div>
+
+        <h3>Still stuck?</h3>
+        <p>If your question isn't here, two places usually have the answer:</p>
+        <div class="grid cols-2">
+          <a class="card" href="reference.html#glossary"><div class="ci" style="background:var(--blue-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b6fb0" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+            <h4>Glossary</h4><p>Every term in this guide — seed, BIC, z-score, R², density, covariance — defined in one plain-language place.</p></a>
+          <a class="card" href="getting-started.html"><div class="ci" style="background:var(--brand-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e0564a" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+            <h4>Getting started</h4><p>The basic workflow from a blank screen to your first set of results, step by step.</p></a>
+        </div>
+        <div class="adm adm-note"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg><div><div class="at">A note on every number here</div><p>Properties, rules, flags, scores, and groupings are <em>decision aids</em>, not decisions. They help you prioritize and ask better questions — the chemistry, the assay, and your judgment make the call.</p></div></div>
+      </section>
+
+      <section>
+        <h2 id="glossary">Glossary</h2>
+        <p>Every term used in this guide, defined in plain words. No statistics background needed — each entry is one or two jargon-free sentences. The terms are grouped alphabetically into four tables for easy scanning. The left column is the term as it appears in the app or in this guide; the right column is the plain-words meaning. Where a term belongs to a bigger topic, the matching guide page is linked so you can read more.</p>
+        <div class="adm adm-tip"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg>
+          <div><div class="at">Tip</div><p>Use your browser's find feature (<span class="kbd">Ctrl</span>+<span class="kbd">F</span>, or <span class="kbd">Cmd</span>+<span class="kbd">F</span> on a Mac) to jump straight to any word on this page.</p></div></div>
+
+        <h3>A – C</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Term</th><th>In plain words</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Adjusted R-squared</strong></td><td>A fairer version of R-squared (see below) that does not reward a model just for using more inputs. If adding a property does not genuinely help, adjusted R-squared goes down — so it is the more honest "how well does this fit" score. See <a href="regression.html">3D regression</a>.</td></tr>
+              <tr><td><strong>Aggregator</strong></td><td>An <a href="interference.html">interference flag</a> for greasy compounds that clump into tiny particles in water and trap protein, producing a fake "inhibition" that disappears when detergent is added. A common cause of false hits in screening.</td></tr>
+              <tr><td><strong>AIC</strong> (Akaike Information Criterion)</td><td>A scorecard for choosing how many groups a model should have. It rewards good fit but subtracts a gentle, fixed penalty for every extra setting the model uses; lower is better. Tends to suggest slightly more groups than BIC. See <a href="gmm.html">Grouping (GMM)</a>.</td></tr>
+              <tr><td><strong>Aromatic ring</strong></td><td>A flat, especially stable ring of atoms with shared electrons (a benzene ring is the classic example). Counting them gauges how "flat" and rigid a molecule is. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>BIC</strong> (Bayesian Information Criterion)</td><td>The scorecard this app uses to pick how many groups fit the data best. Like AIC it rewards good fit and penalizes extra groups, but its penalty grows with how much data you have, so it prefers fewer, well-supported groups — guarding against inventing groups out of noise. Lower is better. See <a href="gmm.html">Grouping (GMM)</a>.</td></tr>
+              <tr><td><strong>Bell-curve (Gaussian)</strong></td><td>The familiar symmetric "hump" shape that describes how many measurements naturally spread around an average. GMM models your data as a blend of several of these humps, one per group. "Gaussian" is just the formal name for a bell-curve.</td></tr>
+              <tr><td><strong>Box plot</strong></td><td>A chart that summarizes a set of numbers as a box (the middle half of the values) with a line for the middle value and whiskers reaching to the typical range, so you can compare spreads at a glance. See <a href="visualization.html">Visualization gallery</a>.</td></tr>
+              <tr><td><strong>Cluster</strong></td><td>A sub-population of molecules that resemble each other on the chosen properties — for example "small &amp; polar" versus "large &amp; greasy." GMM finds clusters automatically; you do not define them in advance.</td></tr>
+              <tr><td><strong>Coefficient / slope</strong></td><td>In a regression, the "lever" attached to each input: how much the result changes when that one property goes up by one unit, holding the others fixed. A bigger coefficient means that property pushes the outcome harder. See <a href="regression.html">3D regression</a>.</td></tr>
+              <tr><td><strong>Confidence interval</strong></td><td>A range that a regression estimate is likely to fall within. A narrow range means the tool is fairly sure of the number; a wide range means there is more uncertainty. See <a href="regression.html">3D regression</a>.</td></tr>
+              <tr><td><strong>Confidence score</strong> (GMM)</td><td>For each molecule, how sure the tool is that it belongs to its assigned group, shown as a percentage. A high score means it sits firmly inside one group; a low score means it sits between groups and could go either way. See <a href="gmm.html">Grouping (GMM)</a>.</td></tr>
+              <tr><td><strong>Covariance</strong></td><td>A measure of whether two properties tend to move together (both rising, or one rising as the other falls) or change independently. GMM uses it to describe the shape and tilt of each group's bell-curve.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>D – I</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Term</th><th>In plain words</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Density</strong></td><td>How tightly molecules are packed along a property's scale. A density curve is a smooth line that rises where many compounds share similar values and dips where few do — its humps reveal hidden sub-groups. See <a href="gmm.html">Grouping (GMM)</a>.</td></tr>
+              <tr><td><strong>Egan filter</strong></td><td>A published <a href="properties.html">drug-likeness rule</a> that flags compounds outside a sensible window of greasiness (LogP) and polar surface area (TPSA), aimed at predicting good absorption.</td></tr>
+              <tr><td><strong>Exact Mass</strong></td><td>The precise mass of a molecule calculated using the exact mass of each atom's most common isotope. It is the number a high-resolution mass spectrometer expects to see, slightly different from the everyday average molecular weight. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>F-statistic</strong></td><td>A single number that tests whether your regression as a whole explains anything real, rather than just noise. A large F (paired with a small p-value) means the overall pattern is probably genuine. See <a href="regression.html">3D regression</a>.</td></tr>
+              <tr><td><strong>Fluorophore</strong></td><td>A part of a molecule that glows when light shines on it. Flagged as an <a href="interference.html">interference</a> risk because such compounds can drown out a fluorescence-based assay's signal and look like a hit when they are not.</td></tr>
+              <tr><td><strong>Formal charge</strong></td><td>The net electrical charge on a molecule once you tally the pluses and minuses on its atoms. It affects solubility and how the molecule interacts with its target. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>Fraction sp3 (Fsp3)</strong></td><td>The share of carbon atoms that are "three-dimensional" (saturated, with four single bonds) rather than flat. A higher Fsp3 means a more 3-D, less flat molecule, which often correlates with better drug-like behavior. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>Ghose filter</strong></td><td>A published <a href="properties.html">drug-likeness rule</a> defining comfortable ranges for size, greasiness, refractivity, and atom count that typical small-molecule drugs fall within.</td></tr>
+              <tr><td><strong>GMM</strong> (Gaussian Mixture Model)</td><td>The method behind the grouping workspace. It assumes your data is a blend ("mixture") of several bell-curves and works out where each one sits, then assigns every molecule to the bell-curve it most likely came from — discovering natural groups for you. See <a href="gmm.html">Grouping (GMM)</a>.</td></tr>
+              <tr><td><strong>H-bond acceptor</strong> (HBA)</td><td>A spot on a molecule (usually an oxygen or nitrogen) that can receive a hydrogen bond — a gentle "handshake" with water or a protein. More acceptors generally means more water-loving. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>H-bond donor</strong> (HBD)</td><td>A spot on a molecule with a hydrogen it can offer for a hydrogen bond (think of N–H or O–H groups). Donors and acceptors together gauge how a molecule grips water and its target. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>Heatmap</strong></td><td>A colored grid showing how strongly every property relates to every other one — warm colors for strong relationships, cool for weak — so patterns across many columns jump out at once. See <a href="visualization.html">Visualization gallery</a>.</td></tr>
+              <tr><td><strong>Heavy atom</strong></td><td>Any atom that is not hydrogen (carbon, nitrogen, oxygen, and so on). The heavy-atom count is a simple, hydrogen-free measure of molecular size, used in several efficiency metrics. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>Histogram</strong></td><td>A bar chart that shows how often values fall into each range, revealing the shape of a single property's distribution (where most compounds sit, and whether there are gaps or extremes). See <a href="visualization.html">Visualization gallery</a>.</td></tr>
+              <tr><td><strong>InChI</strong></td><td>A standard text "barcode" for a molecule. Unlike a casual SMILES string, the same molecule always produces the same InChI, making it ideal for unambiguous identification. See <a href="getting-started.html">Input formats</a>.</td></tr>
+              <tr><td><strong>InChI Key</strong></td><td>A short, fixed-length fingerprint derived from the InChI. It is handy for database lookups but does not contain the full structure, so the app looks it up online (via the NIH resolver, with PubChem as backup) to recover the molecule. See <a href="getting-started.html">Input formats</a>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>L – Q</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Term</th><th>In plain words</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Ligand efficiency</strong></td><td>A family of scores that divide how strongly a compound binds by its size, so a small, lean binder is not unfairly beaten by a big one that only binds tightly because it is large — "binding power per unit of molecule." See <a href="ligand-efficiency.html">Ligand efficiency</a>.</td></tr>
+              <tr><td><strong>Lipinski Rule of Five</strong></td><td>A quick gut-check for oral drug-likeness: molecular weight ≤ 500, LogP ≤ 5, hydrogen-bond donors ≤ 5, acceptors ≤ 10. Each broken limit counts as one violation; two or more is a flag. A guide, not a hard gate. See <a href="properties.html">Drug-likeness rules</a>.</td></tr>
+              <tr><td><strong>Log-transform</strong></td><td>An optional step that compresses a lopsided column so a few very large values are pulled closer to the rest. It makes skewed data more even, which helps GMM fit sensible bell-curves. See <a href="gmm.html">Grouping (GMM)</a>.</td></tr>
+              <tr><td><strong>LogP</strong></td><td>A measure of greasiness versus water-loving: high LogP means the molecule prefers fat/oil, low (or negative) means it prefers water. It strongly influences absorption and membrane crossing. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>Michael acceptor</strong></td><td>A reactive chemical group that readily bonds to sulfur-containing parts of proteins. Because it can grab proteins non-specifically, it is flagged as a thiol-reactive <a href="interference.html">interference</a> risk.</td></tr>
+              <tr><td><strong>Molar refractivity</strong></td><td>A measure related to a molecule's size and how strongly it bends light, used as a proxy for overall bulk and polarizability in some drug-likeness filters. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>Molecular Weight</strong> (MW)</td><td>The average total mass of a molecule, adding up the average mass of every atom. A basic size measure; bigger molecules are often harder to absorb. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>Muegge filter</strong></td><td>A published <a href="properties.html">drug-likeness rule</a> with its own ranges for size, polarity, ring count, and flexibility, designed to separate drug-like from non-drug-like molecules.</td></tr>
+              <tr><td><strong>Outlier</strong></td><td>A data point that does not fit the overall pattern — in GMM, a molecule that belongs to no group well. Outliers are worth a closer look: they are often either the most interesting or the most suspect compounds. See <a href="gmm.html">Grouping (GMM)</a>.</td></tr>
+              <tr><td><strong>p-value</strong></td><td>The chance that a pattern you see is just luck rather than real. A small p-value (below 0.05 is the common cutoff) means the result is probably genuine; a large one means it could easily be coincidence. See <a href="regression.html">3D regression</a>.</td></tr>
+              <tr><td><strong>PAINS</strong></td><td>Pan-Assay Interference Compounds — about 480 published chemical shapes that tend to score as hits across many unrelated assays ("frequent hitters"). A PAINS flag is a heads-up to check a hit carefully, not a verdict. See <a href="interference.html">Interference flags</a>.</td></tr>
+              <tr><td><strong>pKi / pIC50</strong></td><td>Activity values that express how strongly a compound acts, on a convenient scale where bigger numbers mean more potent (each whole step is roughly tenfold stronger). Ligand-efficiency scores need one of these as the "binding strength" input. See <a href="ligand-efficiency.html">Ligand efficiency</a>.</td></tr>
+              <tr><td><strong>QED</strong> (Quantitative Estimate of Drug-likeness)</td><td>A single score from 0 to 1 that blends several drug-like traits into one number; closer to 1 means more drug-like overall. A convenient quick read. See <a href="properties.html">Molecular properties</a>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>R – Z</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Term</th><th>In plain words</th></tr></thead>
+            <tbody>
+              <tr><td><strong>R-squared (R²)</strong></td><td>How much of the up-and-down variation in your data a model explains, from 0% (explains nothing) to 100% (explains it all). Higher usually means a better fit, but it should always be read alongside adjusted R-squared and the p-value. See <a href="regression.html">3D regression</a>.</td></tr>
+              <tr><td><strong>Random seed</strong></td><td>A number that fixes the random starting point GMM uses when it searches for groups. Setting it makes results reproducible — you and a colleague get the exact same grouping every time. Changing it ("Refit / new seed") tests robustness: if the groups barely move, they are trustworthy. See <a href="gmm.html">Grouping (GMM)</a>.</td></tr>
+              <tr><td><strong>Redox-active</strong></td><td>An <a href="interference.html">interference flag</a> for compounds (such as quinones, catechols, and nitro groups) that shuttle electrons and generate reactive species, which can mess with assay chemistry and create false signals.</td></tr>
+              <tr><td><strong>Regression</strong></td><td>A method that fits a simple relationship — here, a flat plane — through your data so you can describe how one outcome depends on other properties, and estimate how strong each influence is. See <a href="regression.html">3D regression</a>.</td></tr>
+              <tr><td><strong>Rotatable bond</strong></td><td>A single bond that the molecule can freely twist around. Counting them measures flexibility; too many floppy bonds can hurt how well a drug is absorbed. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>Scatter plot</strong></td><td>A chart that places each molecule as a dot using two chosen properties for its position, so relationships and outliers between those two traits become visible. Can add a trendline with R². See <a href="visualization.html">Visualization gallery</a>.</td></tr>
+              <tr><td><strong>SMILES</strong></td><td>A compact text "recipe" that spells out a molecule's atoms and bonds as a line of characters — for example aspirin is <span class="smiles">CC(=O)OC1=CC=CC=C1C(=O)O</span>. The most direct way to type a structure into the app. See <a href="getting-started.html">Input formats</a>.</td></tr>
+              <tr><td><strong>Standardize</strong></td><td>An optional step that rescales every property onto a common scale before grouping, so a big-number property (like molecular weight in the hundreds) does not drown out a small-number one (like LogP). Recommended when grouping on several properties at once. See <a href="gmm.html">Grouping (GMM)</a>.</td></tr>
+              <tr><td><strong>Stereocenter</strong></td><td>An atom where the same connections can be arranged in two mirror-image ways, giving rise to different 3-D forms of the molecule. The count flags how much stereochemistry a compound carries. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>Synthetic Accessibility</strong> (SA)</td><td>An estimate of how hard a molecule would be to make in the lab, on a scale of 1 (easy) to 10 (hard). Useful for prioritizing compounds that are realistic to synthesize. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>Thiol-reactive</strong></td><td>An <a href="interference.html">interference flag</a> for compounds carrying reactive groups (like Michael acceptors, acylating agents, or alkyl halides) that can covalently grab cysteine residues on proteins, causing non-specific effects.</td></tr>
+              <tr><td><strong>TPSA</strong> (Topological Polar Surface Area)</td><td>The total area of a molecule's polar (water-attracting) surface, in square ångströms. It predicts how easily a molecule crosses membranes, the gut wall, or into the brain — lower values cross more easily. See <a href="properties.html">Molecular properties</a>.</td></tr>
+              <tr><td><strong>Trendline</strong></td><td>A straight line drawn through a scatter plot to summarize the overall direction of the relationship, often labelled with an equation and R² to say how well it fits. See <a href="visualization.html">Visualization gallery</a>.</td></tr>
+              <tr><td><strong>Veber rules</strong></td><td>A two-part <a href="properties.html">drug-likeness guide</a> for oral bioavailability: polar surface area (TPSA) ≤ 140 Å² and rotatable bonds ≤ 10. Compounds within both limits tend to be absorbed better.</td></tr>
+              <tr><td><strong>Violin plot</strong></td><td>Like a box plot, but the sides bulge to show where values cluster — a fuller picture of a distribution's shape, including whether it has more than one hump. See <a href="visualization.html">Visualization gallery</a>.</td></tr>
+              <tr><td><strong>z-score</strong></td><td>A value rewritten as "how many standard steps it sits above or below the average." Standardizing a column turns its numbers into z-scores so every property is on the same footing. See <a href="gmm.html">Grouping (GMM)</a>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="adm adm-info"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <div><div class="at">Missing a term?</div><p>If a word in the app or in this guide is not listed here, the topic page that introduces it always defines it the first time it appears. Start from the <a href="index.html">Introduction</a> or the relevant section in the sidebar.</p></div></div>
+      </section>
+
+      <div class="pager"><a href="gmm.html"><span class="pl">← Previous</span><span class="pt">Grouping (GMM)</span></a><span class="empty"></span></div>
+
+      <div class="footer">
+        <p><strong>Molecular Properties Calculator</strong> — Researcher's Documentation. Built for Dr. Guido Pauli's Research Group, ITR-UIC.</p>
+        <p style="margin-top:6px">This guide explains <em>meaning</em>, not implementation. · <a href="https://molecular-properties-calculator-2.streamlit.app/" target="_blank" rel="noopener">Open the live app ↗</a></p>
+      </div>
+
+    </main>
+    <nav class="toc" id="toc"></nav>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

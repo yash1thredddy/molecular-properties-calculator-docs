@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Build spec is an authoring aid, not a published page — keep it in-repo but
+# it is not linked from the site. (Remove this comment line to publish it.)

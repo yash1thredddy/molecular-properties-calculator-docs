@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Molecular properties · Molecular Properties Calculator Docs</title>
+<meta name="description" content="The 28 properties the calculator reports, in seven plain-English families." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="properties">
+<div class="progress" id="progress"></div>
+
+<nav class="navbar">
+  <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a href="index.html" class="brand">
+    <svg class="logo" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="11" r="5" fill="#e0564a"/><circle cx="10" cy="28" r="5" fill="#0e9384"/><circle cx="30" cy="28" r="5" fill="#3b6fb0"/><line x1="20" y1="11" x2="10" y2="28" stroke="#9aa3ad" stroke-width="2.2"/><line x1="20" y1="11" x2="30" y2="28" stroke="#9aa3ad" stroke-width="2.2"/><line x1="10" y1="28" x2="30" y2="28" stroke="#9aa3ad" stroke-width="2.2"/></svg>
+    <span class="full">Molecular Properties Calculator</span><span class="tag">Docs</span>
+  </a>
+  <div class="nav-spacer"></div>
+  <a href="reference.html" class="nav-link hide-sm">Reference</a>
+  <a href="https://molecular-properties-calculator-2.streamlit.app/" target="_blank" rel="noopener" class="nav-cta">Open the App ↗</a>
+  <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">
+    <svg id="sunIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <svg id="moonIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+  <div class="side-group"><h4>Start Here</h4>
+    <a class="side-link" data-page="home" href="index.html">Introduction</a>
+    <a class="side-link" data-page="getting-started" href="getting-started.html">Getting started</a>
+  </div>
+  <div class="side-group"><h4>Working with your data</h4>
+    <a class="side-link" data-page="batch" href="batch.html">Batch processing</a>
+    <a class="side-link" data-page="visualization" href="visualization.html">Visualization &amp; charts</a>
+  </div>
+  <div class="side-group"><h4>Understanding the results</h4>
+    <a class="side-link" data-page="properties" href="properties.html">Properties &amp; drug-likeness</a>
+    <a class="side-link" data-page="ligand-efficiency" href="ligand-efficiency.html">Ligand efficiency</a>
+    <a class="side-link" data-page="interference" href="interference.html">Interference flags</a>
+  </div>
+  <div class="side-group"><h4>Deeper analysis</h4>
+    <a class="side-link" data-page="regression" href="regression.html">3D regression</a>
+    <a class="side-link" data-page="gmm" href="gmm.html">Grouping (GMM)</a>
+  </div>
+  <div class="side-group"><h4>Reference</h4>
+    <a class="side-link" data-page="reference" href="reference.html">FAQ &amp; glossary</a>
+  </div>
+</aside>
+
+  <div class="main-wrap">
+    <main class="content">
+
+      <div class="page-head">
+        <div class="breadcrumb"><a href="index.html">Docs</a><span class="sep">/</span><span>Understanding the results</span><span class="sep">/</span><span>Properties &amp; drug-likeness</span></div>
+        <div class="eyebrow">THE NUMBERS</div>
+        <h1>Molecular properties &amp; drug-likeness</h1>
+        <p class="lead">The 28 properties the app computes, grouped into seven families — and the famous drug-likeness rules that judge whether a compound sits in typical oral-drug space.</p>
+      </div>
+
+      <section>
+        <h2>What a "property" is here</h2>
+        <p>A <strong>molecular property</strong> is a single number (or short label) that describes one trait of a molecule — its weight, its greasiness, how many places it can form a hydrogen bond, and so on. None of these requires any lab work: they are all calculated straight from the structure you type or upload. The app reports <strong>28 of them</strong>, and to keep things tidy it sorts them into <strong>seven families</strong> (called "groups" in the app's menu).</p>
+        <p>Two quick conventions used throughout this page:</p>
+        <div class="badge-row">
+          <span class="chip"><span class="dot" style="background:var(--brand)"></span>"High" / "Low" = the practical direction for a drug</span>
+          <span class="chip"><span class="dot" style="background:var(--teal)"></span>Å² = square ångströms, a tiny area unit</span>
+          <span class="chip"><span class="dot" style="background:var(--blue)"></span>g/mol = the unit of molecular weight</span>
+        </div>
+        <div class="adm adm-info"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <div><div class="at">Where these come from</div><p>Every value is computed from the structure using the open-source cheminformatics toolkit RDKit (the same engine many pharma pipelines use), so the numbers match what you would get in KNIME, Pipeline Pilot, or a typical in-house script. The app simply gathers them in one place with plain-English explanations.</p></div></div>
+      </section>
+
+      <section>
+        <h2>The six you'll look at most</h2>
+        <p>If you only ever read a handful of numbers, these are the ones medicinal chemists reach for first. Each card says what the number means in plain words and what high or low values imply for a drug candidate.</p>
+        <div class="grid cols-3">
+          <div class="card"><div class="ci" style="background:var(--brand-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e0564a" stroke-width="2"><path d="M12 3v18"/><path d="M5 8l7-5 7 5"/><circle cx="12" cy="16" r="3"/></svg></div>
+            <h4>Molecular Weight (MW)</h4><p>How heavy the molecule is, in g/mol — a proxy for size. <b>Low–moderate</b> (≤ 500) is easier to absorb by mouth; <b>high</b> tends to absorb poorly and clear quickly.</p></div>
+          <div class="card"><div class="ci" style="background:var(--teal-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0e9384" stroke-width="2"><path d="M12 2C8 7 6 10 6 14a6 6 0 0 0 12 0c0-4-2-7-6-12z"/></svg></div>
+            <h4>LogP (greasiness)</h4><p>Grease-vs-water balance. <b>High</b> = greasy (good at crossing membranes but risks poor solubility &amp; off-target stickiness); <b>low/negative</b> = water-loving (dissolves well but may not get through a membrane).</p></div>
+          <div class="card"><div class="ci" style="background:var(--blue-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b6fb0" stroke-width="2"><path d="M4 20a8 8 0 0 1 16 0z"/><path d="M12 4v8"/><circle cx="12" cy="12" r="1.4"/></svg></div>
+            <h4>TPSA</h4><p>Topological Polar Surface Area — the total "polar" patch on the surface, in Å². <b>High</b> (&gt; 140) struggles to cross the gut wall or the brain barrier; <b>low</b> crosses membranes easily (sometimes <em>too</em> easily into the brain).</p></div>
+          <div class="card"><div class="ci" style="background:var(--violet-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7c5cbf" stroke-width="2"><circle cx="7" cy="8" r="2.5"/><circle cx="17" cy="8" r="2.5"/><path d="M9.5 8h5M7 10.5v4M17 10.5v4"/></svg></div>
+            <h4>H-bond Donors &amp; Acceptors</h4><p>The "handshake points" that grip a target (and water). <b>Few</b> = crosses membranes more easily; <b>many</b> = stronger water/target binding but poorer absorption.</p></div>
+          <div class="card"><div class="ci" style="background:var(--amber-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b87514" stroke-width="2"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg></div>
+            <h4>Rotatable Bonds</h4><p>How "floppy" the molecule is — its flexibility. <b>Low</b> (≤ 10) tends to bind cleanly and absorb well; <b>high</b> can wiggle into many shapes, often hurting oral uptake and binding precision.</p></div>
+          <div class="card"><div class="ci" style="background:var(--brand-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e0564a" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14a4 4 0 0 0 8 0"/><path d="M9 9h.01M15 9h.01"/></svg></div>
+            <h4>QED</h4><p>A single drug-likeness score from <b>0 to 1</b> blending several traits. <b>Closer to 1</b> = more drug-like overall; <b>near 0</b> = far from typical oral drugs. A quick one-glance verdict.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>The seven families at a glance</h2>
+        <p>Inside the app the 28 properties are organized into these seven groups. The table shows what each family covers; the <span class="pill pill-teal">tags</span> name the individual properties inside it.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Family</th><th>What it's about</th><th>Properties inside</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Basic</strong></td>
+                <td>The fundamental "vital statistics" of any structure — size, greasiness, polarity, and what it's made of.</td>
+                <td><span class="pill pill-blue">Molecular Weight</span> <span class="pill pill-blue">Exact Mass</span> <span class="pill pill-blue">LogP</span> <span class="pill pill-blue">TPSA</span> <span class="pill pill-blue">Atom Count</span> <span class="pill pill-blue">Bond Count</span> <span class="pill pill-blue">Molecular Formula</span></td>
+              </tr>
+              <tr>
+                <td><strong>Lipinski</strong></td>
+                <td>The four ingredients of the famous "Rule of Five" oral-drug checklist (covered in depth in the drug-likeness rules below).</td>
+                <td><span class="pill pill-teal">H-bond Donors</span> <span class="pill pill-teal">H-bond Acceptors</span> <span class="pill pill-teal">MW</span> <span class="pill pill-teal">LogP</span></td>
+              </tr>
+              <tr>
+                <td><strong>Drug-likeness</strong></td>
+                <td>Roll-up scores that judge how "drug-like" and how makeable a compound is.</td>
+                <td><span class="pill pill-violet">Lipinski violations</span> <span class="pill pill-violet">Veber criteria</span> <span class="pill pill-violet">QED</span> <span class="pill pill-violet">Synthetic Accessibility</span></td>
+              </tr>
+              <tr>
+                <td><strong>Rules</strong></td>
+                <td>Three additional published "is-it-drug-like?" filters, each a pass/fail with its own ranges.</td>
+                <td><span class="pill pill-amber">Ghose filter</span> <span class="pill pill-amber">Egan filter</span> <span class="pill pill-amber">Muegge filter</span></td>
+              </tr>
+              <tr>
+                <td><strong>Rings</strong></td>
+                <td>How much ring structure the molecule carries — a strong influence on rigidity and shape.</td>
+                <td><span class="pill pill-red">Ring count</span> <span class="pill pill-red">Aromatic ring count</span> <span class="pill pill-red">Ring-system count</span></td>
+              </tr>
+              <tr>
+                <td><strong>Complexity</strong></td>
+                <td>Measures of three-dimensional character and flexibility — how flat or how floppy the molecule is.</td>
+                <td><span class="pill pill-teal">Fraction sp3 carbons (Fsp3)</span> <span class="pill pill-teal">Rotatable bonds</span> <span class="pill pill-teal">Stereocenters</span></td>
+              </tr>
+              <tr>
+                <td><strong>Additional</strong></td>
+                <td>Useful extras: net charge, light-bending bulk, and a clean count of non-hydrogen atoms.</td>
+                <td><span class="pill pill-blue">Formal charge</span> <span class="pill pill-blue">Molar refractivity</span> <span class="pill pill-blue">Heavy-atom count</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="adm adm-note"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h6"/></svg>
+          <div><div class="at">Why MW and LogP appear twice</div><p>Molecular Weight and LogP show up in both the <strong>Basic</strong> and <strong>Lipinski</strong> families. That's intentional — they are core descriptors <em>and</em> two of the four Rule-of-Five ingredients. It's the same value, just grouped where it's useful.</p></div></div>
+      </section>
+
+      <section>
+        <h2>The Basic family in plain words</h2>
+
+        <h3>Molecular Weight (MW)</h3>
+        <p>The combined weight of every atom, in grams per mole (g/mol). It's the simplest stand-in for "how big is this molecule." <strong>Low–moderate MW</strong> (roughly ≤ 500) is generally easier for the body to absorb and move around; <strong>high MW</strong> often means poor oral absorption and faster clearance. Aspirin (<span class="smiles">CC(=O)OC1=CC=CC=C1C(=O)O</span>) weighs about 180 g/mol — comfortably small.</p>
+
+        <h3>Exact Mass (monoisotopic mass)</h3>
+        <p>The mass calculated using the <em>single most common isotope</em> of each element (for example carbon-12 exactly, not the average carbon). MW uses average atomic weights; <strong>Exact Mass</strong> is the precise number a high-resolution mass spectrometer expects to see. <strong>Use it to match or confirm a peak in a mass spec readout</strong>; use MW for size/Rule-of-Five thinking. There is no "good" or "bad" direction — it's an identity number.</p>
+
+        <h3>Molecular Formula</h3>
+        <p>The plain element tally, like C₉H₈O₄ for aspirin — how many carbons, hydrogens, oxygens, and so on. It's not a score; it's a <strong>quick sanity check</strong> that the structure you entered is the one you meant, and a handy label when comparing isomers (same formula, different arrangement).</p>
+
+        <h3>LogP — grease vs water-loving</h3>
+        <p><strong>LogP</strong> measures how a molecule splits itself between oil and water. Technically it's the logarithm of the partition coefficient — the ratio of how much sits in an oily layer (octanol) versus a water layer.</p>
+        <div class="formula">LogP <span class="op">=</span> log<sub>10</sub> ( concentration in oil <span class="op">÷</span> concentration in water )</div>
+        <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> a higher LogP means the molecule prefers grease over water. Around <b>0</b> it's evenly balanced; <b>+3 to +5</b> is quite greasy; <b>negative</b> is strongly water-loving. Greasy compounds slip through fatty cell membranes more easily but tend to dissolve poorly and stick to off-target proteins; water-loving compounds dissolve nicely but may never cross a membrane to reach the target. The sweet spot for many oral drugs is roughly LogP 1–3.</div></div>
+
+        <h3>TPSA — polar surface, the membrane gatekeeper</h3>
+        <p><strong>TPSA</strong> (Topological Polar Surface Area) adds up the surface area belonging to polar atoms — mainly oxygen and nitrogen and the hydrogens attached to them — reported in square ångströms (Å²). It is one of the best simple predictors of whether a molecule can <strong>cross biological barriers</strong>.</p>
+        <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> think of TPSA as how much of the molecule's "skin" is sticky and water-grabbing. The more sticky surface, the harder it is to slip through a greasy membrane. Rough guides chemists use: <b>TPSA ≤ 140 Å²</b> for decent gut absorption (oral uptake), and <b>TPSA ≤ ~90 Å²</b> if you want it to reach the brain (cross the blood–brain barrier). A <b>low</b> TPSA crosses easily — which is good for a brain drug but a liability if you're trying to <em>keep</em> a compound out of the brain.</div></div>
+
+        <h3>Atom Count &amp; Bond Count</h3>
+        <p>Straightforward tallies of how many atoms and how many bonds make up the molecule (including hydrogens by default). They're rarely a decision-maker on their own, but they give a feel for raw size and connectivity and feed into other measures. Bigger counts simply mean a bigger, more elaborate structure.</p>
+      </section>
+
+      <section>
+        <h2>Sample plot · the LogP scale</h2>
+        <p>Because LogP is the property newcomers ask about most, here is a sketch of where common reference points sit on the grease-vs-water axis. The further right, the greasier; the further left, the more it loves water.</p>
+        <div class="card" style="padding:18px">
+          <svg viewBox="0 0 760 230" width="100%" role="img" aria-label="A horizontal LogP scale running from water-loving on the left to greasy on the right, with example compounds and the typical oral-drug sweet spot marked.">
+            <!-- panel background -->
+            <rect x="0" y="0" width="760" height="230" fill="var(--surface)"/>
+            <!-- sweet-spot band -->
+            <rect x="380" y="40" width="160" height="120" fill="#0e9384" opacity="0.10"/>
+            <text x="460" y="34" text-anchor="middle" font-family="IBM Plex Sans" font-size="12" fill="#0e9384">oral-drug sweet spot (~1–3)</text>
+            <!-- axis line -->
+            <line x1="60" y1="120" x2="700" y2="120" stroke="#9aa3ad" stroke-width="2"/>
+            <!-- gradient ticks -->
+            <line x1="60" y1="114" x2="60" y2="126" stroke="#9aa3ad" stroke-width="2"/>
+            <line x1="220" y1="114" x2="220" y2="126" stroke="#9aa3ad" stroke-width="2"/>
+            <line x1="380" y1="114" x2="380" y2="126" stroke="#9aa3ad" stroke-width="2"/>
+            <line x1="540" y1="114" x2="540" y2="126" stroke="#9aa3ad" stroke-width="2"/>
+            <line x1="700" y1="114" x2="700" y2="126" stroke="#9aa3ad" stroke-width="2"/>
+            <text x="60"  y="146" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--muted)">-2</text>
+            <text x="220" y="146" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--muted)">0</text>
+            <text x="380" y="146" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--muted)">2</text>
+            <text x="540" y="146" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--muted)">4</text>
+            <text x="700" y="146" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--muted)">6</text>
+            <!-- end labels -->
+            <text x="60"  y="200" text-anchor="start" font-family="IBM Plex Sans" font-size="13" fill="#3b6fb0">← water-loving (hydrophilic)</text>
+            <text x="700" y="200" text-anchor="end" font-family="IBM Plex Sans" font-size="13" fill="#e0564a">greasy (lipophilic) →</text>
+            <!-- example dots: paracetamol ~0.5, aspirin ~1.2, caffeine ~ -0.1, ibuprofen ~3.5, statin-ish ~5 -->
+            <circle cx="180" cy="120" r="6" fill="#3b6fb0"/><text x="180" y="80" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="var(--muted)">caffeine</text><line x1="180" y1="86" x2="180" y2="113" stroke="#9aa3ad" stroke-width="1"/>
+            <circle cx="290" cy="120" r="6" fill="#0e9384"/><text x="290" y="98" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="var(--muted)">aspirin</text><line x1="290" y1="104" x2="290" y2="113" stroke="#9aa3ad" stroke-width="1"/>
+            <circle cx="460" cy="120" r="6" fill="#0e9384"/><text x="460" y="98" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="var(--muted)">ibuprofen</text><line x1="460" y1="104" x2="460" y2="113" stroke="#9aa3ad" stroke-width="1"/>
+            <circle cx="620" cy="120" r="6" fill="#e0564a"/><text x="620" y="80" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="var(--muted)">very greasy</text><line x1="620" y1="86" x2="620" y2="113" stroke="#9aa3ad" stroke-width="1"/>
+          </svg>
+          <p class="plain" style="margin-top:10px"><span class="pi">💡</span><div><b>What this shows:</b> everyday drug molecules cluster in the LogP 0–4 band; the shaded teal zone (~1–3) is where oral compounds most often balance "crosses membranes" against "still dissolves." Positions are illustrative, not exact.</div></p>
+        </div>
+      </section>
+
+      <section>
+        <h2>The Lipinski family</h2>
+        <p>These four are the raw ingredients of the Rule of Five. They're explained fully in the <a href="#drug-likeness-rules">drug-likeness rules</a> below; here is the plain meaning of the two that are unique to this family.</p>
+
+        <h3>H-bond Donors (HBD) &amp; H-bond Acceptors (HBA) — the handshake points</h3>
+        <p>A <strong>hydrogen bond</strong> is a gentle, reversible "handshake" between molecules. A <strong>donor</strong> offers a hydrogen (think –OH or –NH groups); an <strong>acceptor</strong> receives one (think the lone pairs on oxygen or nitrogen). Counting them tells you how many grip points the molecule has — both for clinging to its target and for clinging to surrounding water.</p>
+        <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> more handshake points usually means stronger, more specific binding to a target — but also more attraction to water, which makes it harder to cross a greasy membrane. <b>Few</b> donors/acceptors = better membrane crossing; <b>many</b> = better binding/solubility but tougher absorption. The Rule of Five caps donors at <b>5</b> and acceptors at <b>10</b> for oral drugs.</div></div>
+      </section>
+
+      <section>
+        <h2>The Drug-likeness family</h2>
+        <p>This family contains roll-up verdicts rather than raw measurements. <strong>Lipinski violations</strong> and <strong>Veber criteria</strong> are pass/fail rule checks (detailed in the <a href="#drug-likeness-rules">drug-likeness rules</a> below). The two unique to this family are the scoring numbers below.</p>
+
+        <h3>QED — one number for "drug-likeness"</h3>
+        <p><strong>QED</strong> (Quantitative Estimate of Drug-likeness) bundles several properties — weight, greasiness, polar surface, hydrogen-bonding, rings, and alerts — into a single score between <strong>0 and 1</strong>.</p>
+        <div class="formula">QED <span class="op">=</span> blended "desirability" of MW, LogP, TPSA, H-bonds, rings, … <span class="op">→</span> a single 0–1 value</div>
+        <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> QED answers "how typical of a marketed oral drug is this?" in one glance. <b>Closer to 1</b> = it looks like a clean, drug-like molecule; <b>near 0</b> = it has features marketed drugs rarely show. It's a fast triage score, not a guarantee — treat it as a thermometer, not a verdict.</div></div>
+
+        <h3>Synthetic Accessibility (SA) — how hard is it to make?</h3>
+        <p><strong>SA</strong> estimates how difficult a molecule would be to synthesize in the lab, on a scale from <strong>1 (easy)</strong> to <strong>10 (hard)</strong>. It rewards common, simple fragments and penalizes rare ring systems, many stereocenters, and unusual chemistry.</p>
+        <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> a <b>low</b> SA score (near 1–3) means a chemist could likely make it quickly and cheaply — great for fast follow-up. A <b>high</b> SA score (7–10) warns that it may take many steps, exotic reagents, or tricky purifications. It's a planning hint for prioritizing which "great on paper" ideas are actually worth chasing.</div></div>
+      </section>
+
+      <section>
+        <h2>The Rules family</h2>
+        <p>Beyond Lipinski's Rule of Five, three other published filters each define their own "drug-like" window across properties like weight, greasiness, atom counts, and polar surface. In this app each returns a simple <strong>pass / fail</strong> verdict.</p>
+        <div class="badge-row">
+          <span class="chip"><span class="dot" style="background:var(--brand)"></span>Ghose filter</span>
+          <span class="chip"><span class="dot" style="background:var(--teal)"></span>Egan filter</span>
+          <span class="chip"><span class="dot" style="background:var(--blue)"></span>Muegge filter</span>
+        </div>
+        <p>Each was derived from a different reference set of known drugs, so they don't always agree. Treat agreement across several as reassuring, and a lone failure as a prompt to look closer rather than a rejection. Full ranges and how to read disagreements live in the <a href="#drug-likeness-rules">drug-likeness rules</a> below.</p>
+      </section>
+
+      <section>
+        <h2>The Rings family</h2>
+        <p>Rings give a molecule its backbone and shape. The app reports three different ways of counting them, and the distinction matters.</p>
+        <div class="grid cols-3">
+          <div class="card"><div class="num">○</div><h4>Ring count</h4><p>The total number of individual rings. A fused two-ring system like naphthalene counts as <strong>two</strong> rings.</p></div>
+          <div class="card"><div class="num">⬡</div><h4>Aromatic ring count</h4><p>How many of those rings are <strong>aromatic</strong> — flat, electron-rich rings like benzene. Many aromatic rings can raise greasiness and stacking/off-target risk.</p></div>
+          <div class="card"><div class="num">⬢</div><h4>Ring-system count</h4><p>How many <strong>separate</strong> ring assemblies there are. Naphthalene's two fused rings form <em>one</em> ring system; two unconnected benzene rings would be two.</p></div>
+        </div>
+        <div class="adm adm-tip"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg>
+          <div><div class="at">Why three counts, not one</div><p><strong>Ring count</strong> tells you total rings; <strong>ring-system count</strong> tells you how those rings are clustered. Together they describe rigidity and shape better than either alone. Too many flat <strong>aromatic</strong> rings is a known liability — it often pushes greasiness up and three-dimensional character (next section) down.</p></div></div>
+      </section>
+
+      <section>
+        <h2>The Complexity family</h2>
+
+        <h3>Fraction sp3 carbons (Fsp3) — how three-dimensional is it?</h3>
+        <p>Carbons come in two flavors here: <strong>sp3</strong> carbons are the "puckered," tetrahedral ones found in chains and saturated rings, while flat aromatic/double-bonded carbons are sp2. <strong>Fsp3</strong> is simply the share of carbons that are sp3.</p>
+        <div class="formula">Fsp3 <span class="op">=</span> (number of sp3 carbons) <span class="op">÷</span> (total number of carbons)</div>
+        <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> Fsp3 runs from <b>0</b> (completely flat, all aromatic) to <b>1</b> (fully three-dimensional). <b>Higher Fsp3</b> = more 3-D, less flat — and flatter molecules are statistically more prone to poor solubility and off-target hits. Raising Fsp3 (adding saturated, "puckered" character) is a popular way to improve a series' developability.</div></div>
+
+        <h3>Rotatable bonds — flexibility</h3>
+        <p>A <strong>rotatable bond</strong> is a single bond (not in a ring, not to a terminal atom) that the molecule can freely spin around. The count is a direct measure of <strong>floppiness</strong>. <strong>Low</strong> (≤ 10) usually means cleaner binding and better oral uptake; <strong>high</strong> means the molecule can twist into many shapes, which often hurts both absorption and binding precision. This is also one of the two Veber criteria.</p>
+
+        <h3>Stereocenters — three-dimensional handedness</h3>
+        <p>A <strong>stereocenter</strong> is an atom (usually a carbon) whose four different attachments can be arranged two mirror-image ways — like a left versus right hand. The count tells you how many such "handed" points exist.</p>
+        <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> every stereocenter doubles the number of possible 3-D forms (stereoisomers), and biology often cares which hand you give it — one mirror image can be the drug and the other inactive or even harmful. <b>More</b> stereocenters = richer 3-D shape (often desirable for selectivity) but <b>harder and costlier to make and purify as a single, defined form</b>. <b>Zero</b> means no handedness to worry about.</div></div>
+      </section>
+
+      <section>
+        <h2>The Additional family</h2>
+
+        <h3>Formal charge</h3>
+        <p>The molecule's net electrical charge as drawn — the sum of any built-in positive and negative charges. <strong>0</strong> means neutral; <strong>+1, −1, …</strong> means it carries a charge. Charged species behave very differently: they dissolve better in water but usually cross membranes poorly, which strongly affects absorption and where the compound ends up in the body.</p>
+
+        <h3>Molar refractivity (MR)</h3>
+        <p>A measure of how much the molecule <strong>bends light</strong>, which closely tracks its size and polarizability (how easily its electron cloud is distorted). In practice it's a refined "bulk" descriptor — a richer cousin of molecular weight — and it appears as one of the boundaries in the Ghose filter. Bigger, more polarizable molecules have higher MR.</p>
+
+        <h3>Heavy-atom count</h3>
+        <p>The number of <strong>non-hydrogen</strong> atoms (carbon, nitrogen, oxygen, and so on). Chemists favor it over total atom count because hydrogens are implied by the structure, so heavy-atom count is a cleaner, hydrogen-free measure of size. It's also the denominator in several ligand-efficiency metrics — see <a href="ligand-efficiency.html">Ligand efficiency</a>.</p>
+      </section>
+
+      <section>
+        <h2>Reading the extremes</h2>
+        <div class="adm adm-warn"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 21h20L12 2z"/><path d="M12 9v5M12 17h.01"/></svg>
+          <div><div class="at">No single number is a verdict</div><p>A property at an extreme is a <em>flag for attention</em>, not a rejection. Plenty of important drugs break these comfort zones on purpose: many antibiotics carry very high TPSA and weight; some CNS drugs sit at the low-TPSA, greasy end by design; biologics and injectables ignore oral-absorption rules entirely because they don't need to survive the gut. Read properties together, in the context of <strong>how the drug will be given and where it needs to act</strong> — not one at a time against a hard cutoff.</p></div></div>
+        <div class="adm adm-tip"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg>
+          <div><div class="at">A practical reading order</div><p>Glance at <strong>QED</strong> for an overall feel, then check <strong>MW</strong>, <strong>LogP</strong>, and <strong>TPSA</strong> together (size, grease, polar surface — the absorption trio). Use <strong>HBD/HBA</strong> and <strong>rotatable bonds</strong> to explain <em>why</em> absorption might suffer, <strong>Fsp3</strong> and <strong>aromatic rings</strong> for shape/developability, and <strong>SA</strong> to judge whether a promising idea is actually worth making.</p></div></div>
+      </section>
+
+      <section>
+        <h2 id="drug-likeness-rules">Drug-likeness rules</h2>
+        <p class="lead">Famous rules of thumb that flag molecules drifting outside the range of typical oral drugs.</p>
+      </section>
+
+      <section>
+        <h2>What "drug-likeness" really means</h2>
+        <p class="lead">A drug-likeness rule is a <strong>quick gut-check</strong>: a short list of property limits that most successful, swallowable medicines tend to stay inside. If a molecule wanders far outside those limits, the rule raises a small flag — a reminder to look closer.</p>
+        <p>None of these rules measure whether a compound is potent, safe, or selective. They only ask a narrower question: <em>"Does this molecule look like the kinds of compounds that have historically survived the journey from the gut, through the bloodstream, and into cells?"</em> They were learned by looking back at thousands of marketed oral drugs and noticing where the bulk of them clustered.</p>
+        <p>The app reports several of these rules side by side so you can see, at a glance, whether a compound sits comfortably in "drug-like space" or is starting to drift toward the edges. Below we explain each one in plain words, the exact cut-offs the tool uses, and — crucially — when to ignore them.</p>
+
+        <div class="adm adm-note"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg>
+          <div><div class="at">First, a few terms</div><p><strong>MW</strong> (molecular weight) = how heavy the molecule is, in daltons (g/mol). <strong>LogP</strong> = greasiness — high LogP means the molecule prefers oil over water. <strong>H-bond donor</strong> = an –OH or –NH group that can <em>offer</em> a hydrogen for a hydrogen bond. <strong>H-bond acceptor</strong> = an N or O that can <em>receive</em> one. <strong>TPSA</strong> (topological polar surface area, in Å²) = the total area of the molecule's polar patches. <strong>Rotatable bonds</strong> = single bonds the molecule can freely twist around, a measure of floppiness. All of these are defined in full in the properties sections above.</p></div></div>
+      </section>
+
+      <section>
+        <h2>Lipinski's Rule of Five</h2>
+        <p>The most famous rule of all, published by Christopher Lipinski in 1997 after studying which oral drugs made it to market. It is called the "Rule of Five" because every limit is a multiple of five. It describes the typical envelope of an <strong>orally absorbed</strong> small-molecule drug — one you can take as a pill.</p>
+
+        <div class="badge-row">
+          <span class="chip"><span class="dot" style="background:var(--brand)"></span>MW ≤ 500 Da</span>
+          <span class="chip"><span class="dot" style="background:var(--teal)"></span>LogP ≤ 5</span>
+          <span class="chip"><span class="dot" style="background:var(--blue)"></span>H-bond donors ≤ 5</span>
+          <span class="chip"><span class="dot" style="background:var(--violet)"></span>H-bond acceptors ≤ 10</span>
+        </div>
+
+        <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> a good oral drug is usually <b>not too heavy</b> (under ~500 Da), <b>not too greasy</b> (LogP under 5 — greasy molecules dissolve poorly and stick where they shouldn't), and doesn't carry <b>too many hydrogen-bonding handshake points</b> (donors and acceptors). Too many of those polar handshakes make it hard to slip through the fatty membrane of a cell, so the molecule struggles to get absorbed from the gut.</div></div>
+
+        <h3>How violations are counted</h3>
+        <p>Each of the four limits a molecule breaks counts as <strong>one violation</strong>. So the score runs from 0 (inside all four limits) to 4 (outside all of them). The conventional reading:</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Violations</th><th>What it means</th><th>App flag</th></tr></thead>
+            <tbody>
+              <tr><td><strong>0</strong></td><td>Sits squarely in classic oral drug space.</td><td><span class="pill pill-teal">Pass</span></td></tr>
+              <tr><td><strong>1</strong></td><td>Still considered fine — one borderline value is common and acceptable.</td><td><span class="pill pill-teal">Pass</span></td></tr>
+              <tr><td><strong>≥ 2</strong></td><td>Drifting outside the typical envelope — worth a closer look at absorption.</td><td><span class="pill pill-amber">Flag</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="adm adm-info"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <div><div class="at">Why "one is okay"</div><p>Lipinski's original paper allows a single violation precisely because real drugs are not perfect rectangles. A compound that is a touch heavy but otherwise ideal is rarely doomed. It is the <em>combination</em> of several values being off (two or more violations) that more reliably signals an absorption problem — which is why the app turns the flag amber at ≥ 2.</p></div></div>
+
+        <h3>A worked example</h3>
+        <p>Take aspirin, <span class="smiles">CC(=O)OC1=CC=CC=C1C(=O)O</span>. Its MW is about 180 Da (≤ 500 ✓), LogP about 1.2 (≤ 5 ✓), it has 1 H-bond donor (≤ 5 ✓) and 4 acceptors (≤ 10 ✓). <strong>Zero violations</strong> — a textbook drug-like small molecule, which is exactly why aspirin is the canonical example.</p>
+      </section>
+
+      <section>
+        <h2>Sample plot — drug-like space</h2>
+        <p>The two limits people watch most are <strong>weight</strong> and <strong>greasiness</strong>. Plotting molecular weight along the bottom and LogP up the side draws a rectangular "comfort zone." Compounds inside the box clear those two Lipinski limits; compounds outside have drifted past one or both.</p>
+
+        <div class="card">
+          <svg viewBox="0 0 520 320" width="100%" role="img" aria-label="Scatter plot of molecular weight versus LogP with the Lipinski Rule-of-Five box drawn">
+            <!-- plot frame -->
+            <rect x="0" y="0" width="520" height="320" fill="var(--surface)"/>
+            <!-- axes -->
+            <line x1="60" y1="270" x2="490" y2="270" stroke="var(--border)" stroke-width="1.5"/>
+            <line x1="60" y1="30" x2="60" y2="270" stroke="var(--border)" stroke-width="1.5"/>
+            <!-- Rule-of-Five box: MW<=500 (x), LogP<=5 (y). x: 60..420 maps MW 0..600; box ends at MW500 => x=360. y: 270..40 maps LogP -1..7; LogP5 => y top -->
+            <rect x="60" y="83" width="300" height="187" fill="#0e9384" opacity="0.07"/>
+            <line x1="360" y1="83" x2="360" y2="270" stroke="#0e9384" stroke-width="1.6" stroke-dasharray="5 4"/>
+            <line x1="60" y1="83" x2="360" y2="83" stroke="#0e9384" stroke-width="1.6" stroke-dasharray="5 4"/>
+            <text x="368" y="262" font-size="11" fill="#0e9384" font-family="IBM Plex Mono, monospace">MW = 500</text>
+            <text x="66" y="78" font-size="11" fill="#0e9384" font-family="IBM Plex Mono, monospace">LogP = 5</text>
+            <text x="150" y="180" font-size="13" fill="#0e9384" font-weight="600" font-family="IBM Plex Sans, sans-serif">drug-like box</text>
+            <!-- inside points (teal) -->
+            <circle cx="120" cy="225" r="6" fill="#0e9384"/>
+            <circle cx="180" cy="195" r="6" fill="#0e9384"/>
+            <circle cx="250" cy="210" r="6" fill="#0e9384"/>
+            <circle cx="300" cy="160" r="6" fill="#0e9384"/>
+            <circle cx="210" cy="150" r="6" fill="#0e9384"/>
+            <!-- aspirin labelled, inside -->
+            <circle cx="150" cy="232" r="6.5" fill="#e0564a"/>
+            <text x="100" y="252" font-size="10.5" fill="#e0564a" font-family="IBM Plex Mono, monospace">aspirin</text>
+            <!-- outside points (amber) -->
+            <circle cx="430" cy="120" r="6" fill="#b87514"/>
+            <circle cx="460" cy="90" r="6" fill="#b87514"/>
+            <circle cx="320" cy="60" r="6" fill="#b87514"/>
+            <circle cx="410" cy="200" r="6" fill="#b87514"/>
+            <!-- axis labels -->
+            <text x="275" y="300" font-size="12" fill="var(--muted)" text-anchor="middle" font-family="IBM Plex Sans, sans-serif">Molecular weight (Da) →</text>
+            <text x="20" y="150" font-size="12" fill="var(--muted)" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" transform="rotate(-90 20 150)">LogP (greasiness) →</text>
+            <!-- tick hints -->
+            <text x="360" y="285" font-size="10" fill="var(--muted)" text-anchor="middle" font-family="IBM Plex Mono, monospace">500</text>
+            <text x="48" y="86" font-size="10" fill="var(--muted)" text-anchor="end" font-family="IBM Plex Mono, monospace">5</text>
+          </svg>
+          <p class="plain" style="margin-top:10px"><span class="pi">💡</span><div><b>What this shows:</b> teal points (including aspirin, in red) fall inside the Rule-of-Five box on weight and greasiness — classic drug-like territory. Amber points have drifted past the dashed lines: too heavy, too greasy, or both. The box is a guide for the eye, not a wall.</div></p>
+        </div>
+        <p style="margin-top:6px"><em>Illustrative sketch — not real data.</em></p>
+      </section>
+
+      <section>
+        <h2>Veber's rules</h2>
+        <p>Published by Daniel Veber and colleagues in 2002, these two add <strong>flexibility</strong> and <strong>polar surface</strong> to the picture — two things Lipinski's original four didn't cover. They were derived specifically from oral bioavailability data in rats.</p>
+
+        <div class="badge-row">
+          <span class="chip"><span class="dot" style="background:var(--blue)"></span>TPSA ≤ 140 Å²</span>
+          <span class="chip"><span class="dot" style="background:var(--amber)"></span>Rotatable bonds ≤ 10</span>
+        </div>
+
+        <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> a molecule absorbs better when it isn't <b>too floppy</b> (10 or fewer freely-twisting bonds) and doesn't expose <b>too much polar surface</b> (140 Å² or less). A very floppy molecule wastes energy contorting itself and pays a penalty crossing membranes; a very polar surface acts like a coat of water that the fatty membrane repels. Both make a compound harder to absorb from the gut.</div></div>
+
+        <div class="adm adm-tip"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg>
+          <div><div class="at">A handy TPSA shortcut</div><p>A tighter TPSA cut-off of <strong>≤ 90 Å²</strong> is often used as a flag for whether a molecule can cross the blood–brain barrier into the central nervous system. So a brain-targeting drug wants <em>low</em> polar surface, while a drug meant to stay <em>out</em> of the brain may deliberately keep TPSA high. Veber's 140 Å² is the looser, general oral-absorption line.</p></div></div>
+      </section>
+
+      <section>
+        <h2>Three more published filters</h2>
+        <p>The app also reports three older filters that pre-date or parallel Lipinski. Each draws its own box from its own training set, so a compound can pass one and fail another — that disagreement is itself useful information.</p>
+
+        <div class="grid cols-3">
+          <div class="card"><div class="ci" style="background:var(--brand-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e0564a" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
+            <h4>Ghose filter</h4><p>Sets <em>both upper and lower</em> bounds: MW 160–480, LogP −0.4 to 5.6, molar refractivity 40–130, and 20–70 atoms. Unlike Lipinski it also rejects molecules that are <strong>too small</strong>, on the logic that real drugs need a minimum size to bind.</p></div>
+          <div class="card"><div class="ci" style="background:var(--teal-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0e9384" stroke-width="2"><path d="M3 12h18M12 3v18" opacity=".4"/><circle cx="12" cy="12" r="7"/></svg></div>
+            <h4>Egan filter</h4><p>A two-property "egg-shaped" zone using only <strong>LogP and TPSA</strong> (the two that most govern passive absorption). A compound is drug-like if it lands inside that egg — roughly LogP up to ~6 and TPSA up to ~130 Å².</p></div>
+          <div class="card"><div class="ci" style="background:var(--blue-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b6fb0" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
+            <h4>Muegge filter</h4><p>The strictest checklist, from Bayer. Adds bounds on <strong>rings, carbon count, heteroatoms, rotatable bonds, donors, and acceptors</strong> on top of MW and LogP. Designed to weed out compounds that are technically small but chemically odd.</p></div>
+        </div>
+
+        <div class="adm adm-info"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <div><div class="at">Why show several at once?</div><p>If a molecule passes <em>all</em> the filters, you can be fairly confident it sits in well-trodden drug-like space. If it fails just one (say Muegge, the strictest), that's mild. If it fails <em>most</em> of them, that's a stronger signal it's an unusual compound — not necessarily bad, but worth understanding why before you invest in it.</p></div></div>
+      </section>
+
+      <section>
+        <h2>QED — one drug-likeness number</h2>
+        <p>The rules above give pass/fail verdicts. <strong>QED</strong> (Quantitative Estimate of Drug-likeness) instead blends several properties into a single smooth score between <strong>0 and 1</strong>, where closer to 1 means "more like the average marketed oral drug."</p>
+
+        <div class="formula">QED <span class="op">=</span> blended score of <span class="op">(</span>MW, LogP, HBD, HBA, TPSA, rotatable bonds, aromatic rings, alerts<span class="op">)</span></div>
+        <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> instead of a hard yes/no on each limit, QED asks "how desirable is each property?" and gently rewards values near the sweet spot, penalizing values far from it. It then combines those eight gentle scores into one number. A QED near <b>0.9</b> looks very drug-like; near <b>0.2</b> looks unusual. Because it's smooth, a molecule that is <em>slightly</em> over a limit isn't punished as harshly as it would be by a hard rule — QED captures "almost ideal" better than a checklist can.</div></div>
+
+        <div class="card">
+          <svg viewBox="0 0 520 180" width="100%" role="img" aria-label="A 0 to 1 scale showing QED ranges from less drug-like to more drug-like">
+            <rect x="0" y="0" width="520" height="180" fill="var(--surface)"/>
+            <defs><linearGradient id="qedgrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#e0564a"/><stop offset="50%" stop-color="#b87514"/><stop offset="100%" stop-color="#0e9384"/>
+            </linearGradient></defs>
+            <rect x="50" y="70" width="420" height="22" rx="11" fill="url(#qedgrad)"/>
+            <text x="50" y="120" font-size="11" fill="var(--muted)" font-family="IBM Plex Mono, monospace">0.0</text>
+            <text x="255" y="120" font-size="11" fill="var(--muted)" text-anchor="middle" font-family="IBM Plex Mono, monospace">0.5</text>
+            <text x="470" y="120" font-size="11" fill="var(--muted)" text-anchor="end" font-family="IBM Plex Mono, monospace">1.0</text>
+            <text x="60" y="50" font-size="12" fill="#e0564a" font-family="IBM Plex Sans, sans-serif">less drug-like</text>
+            <text x="460" y="50" font-size="12" fill="#0e9384" text-anchor="end" font-family="IBM Plex Sans, sans-serif">more drug-like</text>
+            <!-- aspirin marker around 0.55 -->
+            <line x1="280" y1="62" x2="280" y2="100" stroke="var(--text)" stroke-width="1.5"/>
+            <circle cx="280" cy="81" r="6" fill="#fff" stroke="var(--text)" stroke-width="1.5"/>
+            <text x="280" y="148" font-size="11" fill="var(--text)" text-anchor="middle" font-family="IBM Plex Mono, monospace">aspirin ≈ 0.55</text>
+          </svg>
+          <p class="plain" style="margin-top:10px"><span class="pi">💡</span><div><b>What this shows:</b> QED is a single sliding scale. Aspirin lands mid-scale (~0.55) — small and simple molecules often score modestly because QED rewards the <em>balance</em> of a typical mid-sized drug, not just passing the limits.</div></p>
+        </div>
+        <p style="margin-top:6px"><em>Illustrative sketch — not real data.</em></p>
+      </section>
+
+      <section>
+        <h2>Synthetic Accessibility (SA)</h2>
+        <p>A different kind of practical check. <strong>SA</strong> estimates <em>how hard the molecule would be to make in the lab</em>, on a scale of <strong>1 to 10</strong>.</p>
+
+        <div class="badge-row">
+          <span class="chip"><span class="dot" style="background:var(--teal)"></span>1–3 = easy to synthesize</span>
+          <span class="chip"><span class="dot" style="background:var(--amber)"></span>4–6 = moderate</span>
+          <span class="chip"><span class="dot" style="background:var(--brand)"></span>7–10 = hard / exotic</span>
+        </div>
+
+        <div class="plain"><span class="pi">💡</span><div><b>In plain words:</b> SA looks at how common the building-block fragments are (rewarding familiar, easy-to-buy pieces) and how awkward the structure is (penalizing many stereocenters, fused exotic ring systems, and large molecules). A <b>low SA score is good</b> — it means your chemists can probably make the compound without heroics. A high score warns that even a great-looking molecule might be expensive or impractical to actually produce.</div></div>
+
+        <div class="adm adm-tip"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg>
+          <div><div class="at">Pair it with QED</div><p>QED and SA answer two different questions: "does it <em>look</em> like a drug?" and "can we actually <em>build</em> it?" A compound with high QED <em>and</em> low SA is the dream — drug-like and easy to make. High QED but high SA is a warning that the prize comes at a synthetic cost.</p></div></div>
+      </section>
+
+      <section>
+        <h2>The most important caveat</h2>
+
+        <div class="adm adm-warn"><svg class="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.3 3.3 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.3a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+          <div><div class="at">Rules are guides, not gates</div><p>These filters are <strong>prioritization tools, not pass/fail gatekeepers</strong>. They were built almost entirely from <em>oral</em> small-molecule drugs, so they say little about anything outside that world. Plenty of important, approved drugs break them on purpose:</p>
+          <ul style="margin:8px 0 0 18px;padding:0;line-height:1.7">
+            <li>Many <strong>antibiotics</strong> (erythromycin, vancomycin) are large and polar — they violate the Rule of Five and still work.</li>
+            <li><strong>Injectable</strong> and infused drugs skip the gut entirely, so absorption rules barely apply.</li>
+            <li><strong>Natural products</strong> and macrocycles routinely exceed MW, donor, and rotatable-bond limits.</li>
+            <li>Targeted protein degraders and peptides live well outside "Rule-of-Five space" by design.</li>
+          </ul>
+          <p style="margin-top:8px">Use these flags to <strong>decide where to spend your attention</strong> — a violation says "understand why before you proceed," not "reject this molecule." A compound that breaks a rule for a good, deliberate reason is perfectly fine.</p></div></div>
+      </section>
+
+      <section>
+        <h2>Quick reference</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Rule</th><th>Limits the app checks</th><th>Question it answers</th><th>Output</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Lipinski (Rule of Five)</strong></td><td>MW ≤ 500, LogP ≤ 5, HBD ≤ 5, HBA ≤ 10</td><td>Could a pill of this be absorbed orally?</td><td><span class="pill pill-blue">violation count 0–4</span></td></tr>
+              <tr><td><strong>Veber</strong></td><td>TPSA ≤ 140 Å², rotatable bonds ≤ 10</td><td>Is it too floppy or too polar to absorb?</td><td><span class="pill pill-teal">pass / fail</span></td></tr>
+              <tr><td><strong>Ghose</strong></td><td>MW 160–480, LogP −0.4 to 5.6, MR 40–130, 20–70 atoms</td><td>Is it in the typical size & grease band (not too small)?</td><td><span class="pill pill-teal">pass / fail</span></td></tr>
+              <tr><td><strong>Egan</strong></td><td>LogP &amp; TPSA inside the "egg"</td><td>Will it cross membranes passively?</td><td><span class="pill pill-teal">pass / fail</span></td></tr>
+              <tr><td><strong>Muegge</strong></td><td>Strictest multi-property checklist</td><td>Is it chemically conventional for a drug?</td><td><span class="pill pill-teal">pass / fail</span></td></tr>
+              <tr><td><strong>QED</strong></td><td>Smooth blend of 8 properties</td><td>How drug-like overall?</td><td><span class="pill pill-violet">0 → 1 score</span></td></tr>
+              <tr><td><strong>Synthetic Accessibility</strong></td><td>Fragment familiarity + complexity</td><td>How hard to make in the lab?</td><td><span class="pill pill-amber">1 easy → 10 hard</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Common questions</h2>
+        <div class="faq">
+          <details><summary>My molecule has 2 violations — should I drop it?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary><div class="faq-body"><p>Not automatically. Two violations is a flag to <em>investigate</em>, not a verdict. Check <em>which</em> limits it broke and whether there's a reason — a slightly heavy macrocycle or an injectable candidate may be entirely viable. Ligand efficiency and the interference flags give you more context for the decision.</p></div></details>
+          <details><summary>Why do Lipinski and Muegge disagree on the same molecule?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary><div class="faq-body"><p>Because they were trained on different data and check different properties. Muegge is the strictest, with extra bounds on rings, heteroatoms, and rotatable bonds. A compound can clear Lipinski's four limits yet trip one of Muegge's extra ones. The disagreement tells you the molecule is borderline on something Lipinski simply doesn't look at.</p></div></details>
+          <details><summary>Is a higher QED always better than passing Lipinski?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary><div class="faq-body"><p>They measure slightly different things. Lipinski is a hard checklist for oral absorption; QED is a smooth overall "looks like an average drug" score. A molecule can pass Lipinski yet have a modest QED (aspirin does), simply because QED also rewards balance across more properties. Read them together, not as substitutes.</p></div></details>
+          <details><summary>Do these rules tell me if a compound is potent or safe?<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary><div class="faq-body"><p>No. They speak only to <em>absorption and drug-likeness</em> — whether a compound resembles successful oral drugs in size, greasiness, and polarity. Potency comes from assays; safety comes from toxicology. For binding-per-size efficiency, see <a href="ligand-efficiency.html">Ligand efficiency</a>; for assay false alarms, see <a href="interference.html">Interference flags</a>.</p></div></details>
+        </div>
+      </section>
+
+      <div class="pager"><a href="visualization.html"><span class="pl">← Previous</span><span class="pt">Visualization &amp; charts</span></a><a class="next" href="ligand-efficiency.html"><span class="pl">Next →</span><span class="pt">Ligand efficiency</span></a></div>
+
+      <div class="footer">
+        <p><strong>Molecular Properties Calculator</strong> — Researcher's Documentation. Built for Dr. Guido Pauli's Research Group, ITR-UIC.</p>
+        <p style="margin-top:6px">This guide explains <em>meaning</em>, not implementation. · <a href="https://molecular-properties-calculator-2.streamlit.app/" target="_blank" rel="noopener">Open the live app ↗</a></p>
+      </div>
+
+    </main>
+    <nav class="toc" id="toc"></nav>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
