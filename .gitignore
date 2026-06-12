@@ -11,3 +11,6 @@ Thumbs.db
 
 # Build spec is an authoring aid, not a published page — keep it in-repo but
 # it is not linked from the site. (Remove this comment line to publish it.)
+
+# Internal reference notes — kept local, not published to the public repo
+FRAMEWORK-EVALUATION.md
